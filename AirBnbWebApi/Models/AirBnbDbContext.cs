@@ -17,5 +17,6 @@ namespace AirBnbWebApi.Models
 
         }
         public DbSet<Host> hosts { get; set; }
+        public DbSet<User> users { get; set; }
     }
 }

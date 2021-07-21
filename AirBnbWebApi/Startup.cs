@@ -33,7 +33,7 @@ namespace AirBnbWebApi
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "WebApplication5", Version = "v1" });
             });
-           services.AddCors();
+            services.AddCors();
             services.AddDbContext<AirBnbDbContext>(opt => opt.UseSqlServer(Configuration.GetConnectionString("con")));
             services.AddControllers();
         }
@@ -48,16 +48,16 @@ namespace AirBnbWebApi
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "WebApplication5 v1"));
             }
 
-           app.UseCors(builder => builder.AllowAnyHeader().AllowAnyMethod().SetIsOriginAllowed((host) => true).AllowCredentials());
-           app.UseMiddleware<CorsMiddleware>();
+            app.UseCors(builder => builder.AllowAnyHeader().AllowAnyMethod().SetIsOriginAllowed((host) => true).AllowCredentials());
+            app.UseMiddleware<CorsMiddleware>();
             app.UseRouting();
 
-         app.UseAuthorization();
+            app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
-           });
+            });
         }
     }
 }
