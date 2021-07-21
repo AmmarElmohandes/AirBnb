@@ -4,14 +4,16 @@ using AirBnbWebApi.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace AirBnbWebApi.Migrations
 {
     [DbContext(typeof(AirBnbDbContext))]
-    partial class AirBnbDbContextModelSnapshot : ModelSnapshot
+    [Migration("20210721204452_m4")]
+    partial class m4
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -25,9 +27,6 @@ namespace AirBnbWebApi.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<int>("Age")
-                        .HasColumnType("int");
 
                     b.Property<DateTime>("BirthDate")
                         .HasColumnType("datetime2");

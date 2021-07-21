@@ -7,6 +7,9 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using AirBnbWebApi.Models;
 using Microsoft.AspNetCore.Cors;
+using AirBnbWebApi.JwtFeatures;
+using Microsoft.AspNetCore.Identity;
+using System.IdentityModel.Tokens.Jwt;
 
 namespace AirBnbWebApi.Controllers
 {
@@ -16,12 +19,16 @@ namespace AirBnbWebApi.Controllers
     public class HostsController : ControllerBase
     {
         private readonly AirBnbDbContext _context;
+        private readonly UserManager<Host> _userManager;
+        private readonly JwtHandler _jwtHandler;
 
-        public HostsController(AirBnbDbContext context)
+        public HostsController(AirBnbDbContext context, JwtHandler jwtHandler)
         {
+            
+            _jwtHandler = jwtHandler;
             _context = context;
         }
-
+       
         // GET: api/Hosts
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Host>>> Gethosts()
@@ -115,6 +122,23 @@ namespace AirBnbWebApi.Controllers
             await _context.SaveChangesAsync();
 
             return NoContent();
+        }
+        [HttpPost("Login")]
+        public async Task<IActionResult> Login([FromBody] LoginHost userForAuthentication)
+        {
+
+           
+            var user = await _context.hosts.FirstOrDefaultAsync(a=>a.Email==userForAuthentication.Email && a.Password==userForAuthentication.Password);
+
+            if (user == null )
+                return Unauthorized(new AuthResponse { ErrorMessage = "Invalid Authentication" });
+
+            var signingCredentials = _jwtHandler.GetSigningCredentials();
+            var claims = _jwtHandler.GetClaims(user);
+            var tokenOptions = _jwtHandler.GenerateTokenOptions(signingCredentials, claims);
+            var token = new JwtSecurityTokenHandler().WriteToken(tokenOptions);
+           
+           return Ok(new AuthResponse { IsAuthSuccessful = true, Token = token,Id=user.id });
         }
 
         private bool HostExists(int id)

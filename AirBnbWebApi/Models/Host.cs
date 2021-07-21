@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -36,12 +37,14 @@ namespace AirBnbWebApi.Models
 
         public string PhoneNumber { get; set; }
         [Required]
-        public DateTime BD { get; set; }
-        [Range(18,100)]
-        public int age { get; set; }
+        public DateTime BirthDate { get; set; }
+        [Range(18, 100)]
+        public int Age { get { return int.Parse((DateTime.Now.Year - BirthDate.Year).ToString()); }set {value= int.Parse((DateTime.Now.Year - BirthDate.Year).ToString()); } }
 
-        public string gender { get; set; }
+        public string Gender { get; set; }
+        public virtual List<Property>? properties { get; set; }
 
+        
         //public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
         //{
             
