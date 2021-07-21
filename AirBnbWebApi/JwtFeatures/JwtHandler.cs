@@ -35,6 +35,14 @@ namespace AirBnbWebApi.JwtFeatures
         };
             return claims;
         }
+        public List<Claim> GetClaims(User user)
+        {
+            var claims = new List<Claim>
+        {
+            new Claim(ClaimTypes.Name, user.Email)
+        };
+            return claims;
+        }
         public JwtSecurityToken GenerateTokenOptions(SigningCredentials signingCredentials, List<Claim> claims)
         {
             var tokenOptions = new JwtSecurityToken(
