@@ -20,13 +20,12 @@ export class LoginComponent implements OnInit {
     userName: new FormControl('',Validators.required),
     password: new FormControl('',Validators.required),
   });
-  logIn(){
+  login(){
     let credentials = this.form.value;
     this.authService.logIn(credentials)
     .subscribe(result =>{
       if(result)
      this.router.navigate(['']);
-
       this.invalidLogin = true;
     });
 
