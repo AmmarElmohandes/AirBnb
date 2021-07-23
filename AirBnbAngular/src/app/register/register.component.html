@@ -110,7 +110,7 @@
                         </div>
                         <div class="form-group col">
                             <input
-                                formControlName="BirthDay"
+                                formControlName="BirthDate"
                                 class="form-control"
                                 type="date"
                                 name="birthdate"
@@ -118,13 +118,13 @@
                             />
                         </div>
                              <div *ngIf="birthDate?.touched && birthDate?.invalid" class="alert alert-danger">
-                                Birthday is Required.
+                                BirthDate is Required.
                         </div>
                     </div>
                     <div class="form-group">
                         <button class="btn btn-primary btn-block" type="submit">Sign Up</button>
                     </div>
-                    <a class="already" href="#">You already have an account? Login here.</a>
+                    <a class="already" routerLink="/loginn">You already have an account? Login here.</a>
                 </form>
             </div>
         </section>
