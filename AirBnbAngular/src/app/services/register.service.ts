@@ -8,7 +8,7 @@ export class RegisterService {
   private url = '';
   constructor(private http:HttpClient) { }
   registerNewUser(user:any){
-    return this.http.post(this.url,user)
+    return this.http.post(this.url,JSON.stringify(user))
     
   }
 }

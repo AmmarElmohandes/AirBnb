@@ -9,6 +9,7 @@ import { RegisterComponent } from './register/register.component';
 import { HomeComponent } from './home/home.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NotFoundComponent } from './not-found/not-found.component';
+import { LoginComponent } from './login/login.component';
 
 @NgModule({
   declarations: [
@@ -16,6 +17,7 @@ import { NotFoundComponent } from './not-found/not-found.component';
     RegisterComponent,
     HomeComponent,
     NotFoundComponent,
+    LoginComponent,
   ],
   imports: [
     HttpClientModule,
@@ -25,6 +27,7 @@ import { NotFoundComponent } from './not-found/not-found.component';
     RouterModule.forRoot([
       { path: '', component: HomeComponent },
       { path: 'register', component: RegisterComponent },
+      { path: 'login', component: LoginComponent },
       { path: '**', component: NotFoundComponent },
     ]),
   ],
