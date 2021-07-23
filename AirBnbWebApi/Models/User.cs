@@ -41,6 +41,7 @@ namespace AirBnbWebApi.Models
         public int Age { get { return int.Parse((DateTime.Now.Year - BirthDate.Year).ToString()); } set { value = int.Parse((DateTime.Now.Year - BirthDate.Year).ToString()); } }
 
         public string Gender { get; set; }
+        public virtual List<Reservation>? Reservations { get; set; }
 
     }
 }

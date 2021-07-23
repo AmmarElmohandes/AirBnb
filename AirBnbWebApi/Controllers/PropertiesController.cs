@@ -123,5 +123,16 @@ namespace AirBnbWebApi.Controllers
         {
             return _context.properties.Any(e => e.Title == title);
         }
+        [HttpPost("Search")]
+        public async Task<IActionResult> Search([FromBody] Search userSearch)
+        {
+
+            List<Property> ReturnedProperty = new List<Property>();
+            //Search select 
+            var AllProperties = await _context.properties.Where(a => a.AvailableStartDate <= userSearch.CheckIn && a.AvailableEndDate >= userSearch.CheckOut &&!a.Reservations.Any(a=>(a.CheckIn<=userSearch.CheckIn&&a.CheckOut>=userSearch.CheckIn)||(a.CheckIn<=userSearch.CheckOut&&a.CheckOut>=userSearch.CheckIn))).ToListAsync<Property>();
+            return Ok(AllProperties);
+                
+
+        }
     }
 }
