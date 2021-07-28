@@ -38,7 +38,9 @@ namespace AirBnbWebApi.Models
 
         public virtual Host? host { get; set; }
         public virtual List<Reservation>? Reservations { get; set; }
-
+        public virtual List<Beds>? Beds { get; set; }
+        public virtual List<Photos>? Photos { get; set; }
+        public virtual List<Guests>? Guests { get; set; }
 
     }
 }

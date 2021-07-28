@@ -18,10 +18,9 @@ namespace AirBnbWebApi.Models
 
         public int? NoOfDoublebeds { get; set; }
 
-        [ForeignKey("id")]
+        [ForeignKey("Property")]
         [Required]
-        [Key]
+        public int PropertyId { get; set; }
         public virtual Property Propety { get; set; }
-
     }
 }

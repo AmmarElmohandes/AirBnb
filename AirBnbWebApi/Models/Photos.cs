@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -11,13 +12,12 @@ namespace AirBnbWebApi.Models
     {
         [Key]
         public int id { get; set; }
-
         [Required]
-        public byte Images { get; set; }
-
-        [ForeignKey("id")]
+        public string ImageName { get; set; }
+        [ForeignKey("Property")]
         [Required]
-        [Key]
-        public virtual Property Propety { get; set; }
+        public int PropertyId { get; set; }
+       
+        public virtual Property Property { get; set; }
     }
 }

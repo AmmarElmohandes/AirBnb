@@ -9,6 +9,8 @@ namespace AirBnbWebApi.Models
     {
         public DateTime CheckIn { get; set; }
         public DateTime CheckOut { get; set; }
+        public int NoOfAdultGuests { get; set; }
+        public int NoOfChildGuests {get;set;}
 
     }
 }

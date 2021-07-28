@@ -1,36 +1,55 @@
-﻿using AirBnbWebApi.Models;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using AirBnbWebApi.Models;
 
 namespace AirBnbWebApi.Controllers
 {
-    public class BedsController : Controller
+    [Route("api/[controller]")]
+    [ApiController]
+    public class BedsController : ControllerBase
     {
         private readonly AirBnbDbContext _context;
 
         public BedsController(AirBnbDbContext context)
         {
-
             _context = context;
         }
 
         // GET: api/Beds
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Beds>>> GetBedsForProperty(int PropertyId)
+        public async Task<ActionResult<IEnumerable<Beds>>> GetBeds()
         {
-            return await _context.Beds.Where(x=>x.Propety.id==PropertyId).ToListAsync();
+            return await _context.Beds.ToListAsync();
         }
 
+        // GET: api/Beds/5
+        [HttpGet("{id}")]
+        public async Task<ActionResult<Beds>> GetBeds(int id)
+        {
+            var beds = await _context.Beds.FindAsync(id);
+
+            if (beds == null)
+            {
+                return NotFound();
+            }
+
+            return beds;
+        }
 
         // PUT: api/Beds/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutBed(Beds beds)
+        public async Task<IActionResult> PutBeds(int id, Beds beds)
         {
+            if (id != beds.id)
+            {
+                return BadRequest();
+            }
 
             _context.Entry(beds).State = EntityState.Modified;
 
@@ -40,7 +59,7 @@ namespace AirBnbWebApi.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!BedsExists(beds.id))
+                if (!BedsExists(id))
                 {
                     return NotFound();
                 }
@@ -58,37 +77,31 @@ namespace AirBnbWebApi.Controllers
         [HttpPost]
         public async Task<ActionResult<Beds>> PostBeds(Beds beds)
         {
-            
-                _context.Beds.Add(beds);
-                await _context.SaveChangesAsync();
+            _context.Beds.Add(beds);
+            await _context.SaveChangesAsync();
 
-                return CreatedAtAction("GetBedsForProperty", new { id = beds.id }, beds);
-
-           
+            return CreatedAtAction("GetBeds", new { id = beds.id }, beds);
         }
 
         // DELETE: api/Beds/5
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteBeds(int id)
         {
-            var Beds = await _context.Beds.FindAsync(id);
-            if (Beds == null)
+            var beds = await _context.Beds.FindAsync(id);
+            if (beds == null)
             {
                 return NotFound();
             }
 
-            _context.Beds.Remove(Beds);
+            _context.Beds.Remove(beds);
             await _context.SaveChangesAsync();
 
             return NoContent();
         }
-        
-
 
         private bool BedsExists(int id)
         {
             return _context.Beds.Any(e => e.id == id);
         }
-
     }
 }

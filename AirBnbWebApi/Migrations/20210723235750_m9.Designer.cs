@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace AirBnbWebApi.Migrations
 {
     [DbContext(typeof(AirBnbDbContext))]
-    [Migration("20210723004533_addtablesBedsGuestsPhotos")]
-    partial class addtablesBedsGuestsPhotos
+    [Migration("20210723235750_m9")]
+    partial class m9
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -24,7 +24,9 @@ namespace AirBnbWebApi.Migrations
             modelBuilder.Entity("AirBnbWebApi.Models.Beds", b =>
                 {
                     b.Property<int>("id")
-                        .HasColumnType("int");
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<int?>("NoOfDoublebeds")
                         .HasColumnType("int");
@@ -35,7 +37,12 @@ namespace AirBnbWebApi.Migrations
                     b.Property<int?>("NoOfSinglebeds")
                         .HasColumnType("int");
 
+                    b.Property<int>("PropertyId")
+                        .HasColumnType("int");
+
                     b.HasKey("id");
+
+                    b.HasIndex("PropertyId");
 
                     b.ToTable("Beds");
                 });
@@ -43,7 +50,9 @@ namespace AirBnbWebApi.Migrations
             modelBuilder.Entity("AirBnbWebApi.Models.Guests", b =>
                 {
                     b.Property<int>("id")
-                        .HasColumnType("int");
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<int>("NoOfAdultGuests")
                         .HasColumnType("int");
@@ -51,7 +60,12 @@ namespace AirBnbWebApi.Migrations
                     b.Property<int>("NoOfChildGuests")
                         .HasColumnType("int");
 
+                    b.Property<int>("PropertyId")
+                        .HasColumnType("int");
+
                     b.HasKey("id");
+
+                    b.HasIndex("PropertyId");
 
                     b.ToTable("Guests");
                 });
@@ -104,12 +118,19 @@ namespace AirBnbWebApi.Migrations
             modelBuilder.Entity("AirBnbWebApi.Models.Photos", b =>
                 {
                     b.Property<int>("id")
-                        .HasColumnType("int");
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<byte>("Images")
                         .HasColumnType("tinyint");
 
+                    b.Property<int>("PropertyId")
+                        .HasColumnType("int");
+
                     b.HasKey("id");
+
+                    b.HasIndex("PropertyId");
 
                     b.ToTable("Photos");
                 });
@@ -165,6 +186,37 @@ namespace AirBnbWebApi.Migrations
                     b.ToTable("properties");
                 });
 
+            modelBuilder.Entity("AirBnbWebApi.Models.Reservation", b =>
+                {
+                    b.Property<int>("id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<DateTime>("CheckIn")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("CheckOut")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("PropertyId")
+                        .HasColumnType("int");
+
+                    b.Property<decimal>("TotalPrice")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
+
+                    b.HasKey("id");
+
+                    b.HasIndex("PropertyId");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("Reservations");
+                });
+
             modelBuilder.Entity("AirBnbWebApi.Models.User", b =>
                 {
                     b.Property<int>("id")
@@ -213,8 +265,8 @@ namespace AirBnbWebApi.Migrations
             modelBuilder.Entity("AirBnbWebApi.Models.Beds", b =>
                 {
                     b.HasOne("AirBnbWebApi.Models.Property", "Propety")
-                        .WithMany()
-                        .HasForeignKey("id")
+                        .WithMany("Beds")
+                        .HasForeignKey("PropertyId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -224,8 +276,8 @@ namespace AirBnbWebApi.Migrations
             modelBuilder.Entity("AirBnbWebApi.Models.Guests", b =>
                 {
                     b.HasOne("AirBnbWebApi.Models.Property", "Propety")
-                        .WithMany()
-                        .HasForeignKey("id")
+                        .WithMany("Guests")
+                        .HasForeignKey("PropertyId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -235,8 +287,8 @@ namespace AirBnbWebApi.Migrations
             modelBuilder.Entity("AirBnbWebApi.Models.Photos", b =>
                 {
                     b.HasOne("AirBnbWebApi.Models.Property", "Propety")
-                        .WithMany()
-                        .HasForeignKey("id")
+                        .WithMany("Photos")
+                        .HasForeignKey("PropertyId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -254,9 +306,44 @@ namespace AirBnbWebApi.Migrations
                     b.Navigation("host");
                 });
 
+            modelBuilder.Entity("AirBnbWebApi.Models.Reservation", b =>
+                {
+                    b.HasOne("AirBnbWebApi.Models.Property", "Property")
+                        .WithMany("Reservations")
+                        .HasForeignKey("PropertyId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("AirBnbWebApi.Models.User", "user")
+                        .WithMany("Reservations")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Property");
+
+                    b.Navigation("user");
+                });
+
             modelBuilder.Entity("AirBnbWebApi.Models.Host", b =>
                 {
                     b.Navigation("properties");
+                });
+
+            modelBuilder.Entity("AirBnbWebApi.Models.Property", b =>
+                {
+                    b.Navigation("Beds");
+
+                    b.Navigation("Guests");
+
+                    b.Navigation("Photos");
+
+                    b.Navigation("Reservations");
+                });
+
+            modelBuilder.Entity("AirBnbWebApi.Models.User", b =>
+                {
+                    b.Navigation("Reservations");
                 });
 #pragma warning restore 612, 618
         }
