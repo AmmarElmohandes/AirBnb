@@ -1,0 +1,5 @@
+<p>home works!</p>
+<button *ngIf="!authService.isLoggedIn()" routerLink="/login" class="btn btn-success">Login</button>
+
+<button *ngIf="authService.isLoggedIn()" routerLink=" " class="btn btn-danger" (click)="authService.logout()">Logout</button>
+<button routerLink="/register" class="btn btn success">register</button>

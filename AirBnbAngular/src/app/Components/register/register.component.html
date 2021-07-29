@@ -2,6 +2,9 @@
             <div class="form-container">
                 <form [formGroup]='form' (ngSubmit)='register()'>
                     <h2 class="text-center"><strong>Create</strong> a new account.</h2>
+                  <div *ngIf="error" class="alert alert-danger">
+                      {{error}}
+                  </div>
                     <div class="form-group">
                         <input
                         formControlName="UserName"
@@ -13,6 +16,10 @@
                         <div *ngIf="userName?.touched && userName?.invalid" class="alert alert-danger">
                                 User Name is Required.
                         </div>
+                        <!-- <div *ngIf="form.get('UserName').errors?.serverError">
+                            {{form.get('UserName').errors?.serverError}}
+                        </div> -->
+                       
                     </div>
                     <div class="form-group">
                         <input 
@@ -29,7 +36,7 @@
                         <input
                             formControlName="PhoneNumber"
                             class="form-control"
-                            type="number"
+                            type="text"
                             name="phone"
                             placeholder="Phone Number"
                         />
