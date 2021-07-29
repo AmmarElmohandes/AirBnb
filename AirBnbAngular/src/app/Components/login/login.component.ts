@@ -1,4 +1,4 @@
-import { AuthService } from './../services/auth.service';
+import { AuthService } from '../../services/auth.service';
 import { Router } from '@angular/router';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
@@ -17,15 +17,18 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {}
     invalidLogin = false;
   form = new FormGroup({
-    userName: new FormControl('',Validators.required),
-    password: new FormControl('',Validators.required),
+    Email: new FormControl('',Validators.required),
+    Password: new FormControl('',Validators.required),
   });
   login(){
     let credentials = this.form.value;
     this.authService.logIn(credentials)
     .subscribe(result =>{
-      if(result)
-     this.router.navigate(['']);
+      if(result>0)
+      {
+      console.log(result)
+      this.router.navigate(['']);
+      }
       this.invalidLogin = true;
     });
 

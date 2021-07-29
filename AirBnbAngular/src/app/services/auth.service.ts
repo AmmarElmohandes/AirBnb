@@ -7,17 +7,17 @@ import { map } from 'rxjs/operators';
   providedIn: 'root'
 })
 export class AuthService {
-  private url = '';
+  // private url = ;
   constructor(private http:HttpClient) { }
   logIn(credentials:any){
-    return this.http.post(this.url,JSON.stringify(credentials))
+    return this.http.post("http://localhost:9095/api/users/login",credentials)
     .pipe(map((response : any) => {
       let result = response;
       if (result && result.token){
         localStorage.setItem('token', result.token);
-        return true;
+        return result.id;
       }
-      return false;
+      return 0;
     }))
   }
 
