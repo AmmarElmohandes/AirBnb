@@ -28,6 +28,8 @@ namespace AirBnbWebApi.Models
         public virtual DbSet<Reservation> Reservations { get; set; }
         //public virtual DbSet<PropertyReservation> PropertyReservations { get; set; }
 
+        public virtual DbSet<ContactUs> ContactUs { get; set; }
+
     }
    
 }
