@@ -96,7 +96,12 @@
             "styles": [
               "src/styles.css"
             ],
-            "scripts": []
+            "scripts": [
+              "src/assets/js/jquery.min.js",
+              "src/assets/bootstrap/js/bootstrap.min.js",
+              "src/assets/js/jquery.easing.min.js",
+              "src/assets/js/agency.js"
+            ]
           }
         }
       }
