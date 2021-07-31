@@ -60,10 +60,9 @@ error:string=""
   register() {
     let user = this.form.value;
     console.log(user);
-    this.service.registerNewUser(user).subscribe(a=>console.log(a),err=>this.error=err.error
-      
-    
-      )
+    this.service.registerNewUser(user,1).subscribe(a=>console.log(a),err=>this.error=err.error
+ 
+    )
     
     
     

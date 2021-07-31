@@ -2,4 +2,10 @@
 <button *ngIf="!authService.isLoggedIn()" routerLink="/login" class="btn btn-success">Login</button>
 
 <button *ngIf="authService.isLoggedIn()" routerLink=" " class="btn btn-danger" (click)="authService.logout()">Logout</button>
-<button routerLink="/register" class="btn btn success">register</button>
+<button routerLink="/register" class="btn btn-success">register</button>
+<button routerLink="/beds" class="btn btn-success">beds</button>
+<button routerLink="/guests" class="btn btn-success">guests</button>
+<button routerLink="/property" class="btn btn-success">property</button>
+
+
+
