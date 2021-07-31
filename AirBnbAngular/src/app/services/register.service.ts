@@ -7,8 +7,14 @@ import { Injectable } from '@angular/core';
 export class RegisterService {
   private url = '';
   constructor(private http:HttpClient) { }
-  registerNewUser(user:any){
-    return this.http.post("http://localhost:9095/api/users",user)
+  registerNewUser(user:any,hostOruser:number){
+    if(hostOruser==1){
+    return this.http.post("http://localhost:9095/api/hosts",user)
+    }
+    else{
+      return this.http.post("http://localhost:9095/api/users",user)
+
+    }
     
   }
 }

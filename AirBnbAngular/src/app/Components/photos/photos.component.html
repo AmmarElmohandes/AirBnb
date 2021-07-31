@@ -1,0 +1,3 @@
+<input type="file" #file placeholder="Choose file" (change)="uploadFile(file.files)" style="display:none;">
+    <button type="button" class="btn btn-success" (click)="file.click()">Upload photo</button>
+<img src={{imgsrc}}>
