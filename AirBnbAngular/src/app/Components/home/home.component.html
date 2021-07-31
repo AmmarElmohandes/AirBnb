@@ -1,5 +1,484 @@
-<p>home works!</p>
-<button *ngIf="!authService.isLoggedIn()" routerLink="/login" class="btn btn-success">Login</button>
+<!-- <p>home works!</p>
+<button
+  *ngIf="!authService.isLoggedIn()"
+  routerLink="/login"
+  class="btn btn-success"
+>
+  Login
+</button>
 
-<button *ngIf="authService.isLoggedIn()" routerLink=" " class="btn btn-danger" (click)="authService.logout()">Logout</button>
-<button routerLink="/register" class="btn btn success">register</button>
+<button
+  *ngIf="authService.isLoggedIn()"
+  routerLink=" "
+  class="btn btn-danger"
+  (click)="authService.logout()"
+>
+  Logout
+</button>
+<button routerLink="/register" class="btn btn success">register</button> -->
+
+<body>
+  <nav
+    class="navbar navbar-dark navbar-expand-lg fixed-top bg-dark"
+    id="mainNav"
+  >
+    <div class="container">
+      <a class="navbar-brand" href="#">Airbnb</a
+      ><button
+        data-toggle="collapse"
+        data-target="#navbarResponsive"
+        class="navbar-toggler navbar-toggler-right"
+        type="button"
+        aria-controls="navbarResponsive"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <i class="fa fa-bars"></i>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav ml-auto text-uppercase">
+          <li class="nav-item">
+            <a class="nav-link js-scroll-trigger" href="#search">Search</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link js-scroll-trigger" href="#portfolio">Places</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link js-scroll-trigger" href="#about">About</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link js-scroll-trigger" href="#contact">Contact Us</a>
+          </li>
+          <li class="nav-item">
+            <a
+              *ngIf="!authService.isLoggedIn()"
+              routerLink="/register"
+              class="nav-link js-scroll-trigger"
+              href=""
+              >Become a Host</a
+            >
+          </li>
+          <li class="nav-item">
+            <a routerLink="/register" class="nav-link js-scroll-trigger" href=""
+              >Register</a
+            >
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <header
+    class="masthead"
+    style="background-image: url('assets/img/header-bg.jpg')"
+  >
+    <div class="container">
+      <div class="intro-text">
+        <div class="intro-lead-in"><span>Welcome To Airbnb!</span></div>
+        <div class="intro-heading text-uppercase">
+          <span>It's Nice To Meet You</span>
+        </div>
+      </div>
+    </div>
+  </header>
+  <section id="search">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12 text-center">
+          <h2 class="text-uppercase section-heading">Find Your Place</h2>
+          <h3 class="text-muted section-subheading">
+            We offer a huge number of amazing places for booking, find yours
+            now!
+          </h3>
+        </div>
+      </div>
+      <div id="searchdiv" class="searchdiv">
+        <div
+          class="container shadow-sm border search-container"
+          id="search-container"
+        >
+          <div id="findyourhome" class="findyourhome">
+            <div style="background-color: rgb(120, 120, 120)">
+              <i style="font-size: 110%; color: white" class="fa fa-search"></i>
+            </div>
+            <div><span>Find Your Place</span></div>
+          </div>
+          <div id="basic-div">
+            <div class="row no-gutters">
+              <div class="col-sm-12 col-md-12 col-lg-2">
+                <div class="inputwithicon">
+                  <label for="">Check In:</label>
+                  <input type="date" class="text-input" />
+                </div>
+              </div>
+              <div class="col-sm-12 col-md-12 col-lg-2">
+                <div class="inputwithicon">
+                  <label for="">Check Out:</label>
+                  <input type="date" class="text-input" />
+                </div>
+              </div>
+              <div class="col-sm-12 col-md-12 col-lg-2">
+                <div class="inputwithicon">
+                  <label for="">Country:</label>
+                  <select class="text-input">
+                    <option selected disabled value="undefined">
+                      Choose Country
+                    </option>
+                    <option value="12">Egypt</option>
+                    <option value="13">USA</option>
+                    <option value="14">France</option>
+                    <option value="14">England</option>
+                    <option value="14">Germany</option>
+                  </select>
+                </div>
+              </div>
+              <div class="col-sm-12 col-md-12 col-lg-2">
+                <div class="inputwithicon">
+                  <label for="">City:</label>
+                  <select class="text-input">
+                    <option selected disabled value="undefined">
+                      Choose City
+                    </option>
+                    <option value="12">Cairo</option>
+                    <option value="13">Alexandria</option>
+                    <option value="14">New York</option>
+                    <option value="14">Paris</option>
+                    <option value="14">London</option>
+                    <option value="14">Berlin</option>
+                  </select>
+                </div>
+              </div>
+              <div class="col-sm-12 col-md-12 col-lg-2">
+                <div class="inputwithicon">
+                  <label for="">Adults:</label>
+                  <input value="0" type="number" class="text-input" />
+                </div>
+              </div>
+              <div class="col-sm-12 col-md-12 col-lg-2">
+                <div class="inputwithicon">
+                  <label for="">Children:</label>
+                  <input value="0" type="number" class="text-input" />
+                </div>
+              </div>
+            </div>
+          </div>
+          <div id="features-div"></div>
+          <div class="row" id="buttons-div">
+            <div class="col-lg-6 col-xl-6 mx-auto">
+              <div id="search-btn" class="searchlink">
+                <i class="fas fa-search" style="margin-left: 5px"></i
+                ><a href="#">Search</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="bg-light" id="portfolio">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12 text-center">
+          <h2 class="text-uppercase section-heading">Places</h2>
+          <h3 class="text-muted section-subheading">
+            Take a look at different places where you can book at our website.
+          </h3>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-6 col-md-4 portfolio-item">
+          <img
+            style="width: 400px; height: 300px"
+            class="img-fluid"
+            src="assets/img/places/alexandria.jpg"
+          />
+          <div class="portfolio-caption">
+            <h4>Alexandria</h4>
+            <p class="text-muted">Egypt</p>
+          </div>
+        </div>
+        <div class="col-sm-6 col-md-4 portfolio-item">
+          <img
+            style="width: 400px; height: 300px"
+            class="img-fluid"
+            src="assets/img/places/cairo.jpg"
+          />
+          <div class="portfolio-caption">
+            <h4>Cairo</h4>
+            <p class="text-muted">Egypt</p>
+          </div>
+        </div>
+        <div class="col-sm-6 col-md-4 portfolio-item">
+          <img
+            style="width: 400px; height: 300px"
+            class="img-fluid"
+            src="assets/img/places/london.jpg"
+          />
+          <div class="portfolio-caption">
+            <h4>London</h4>
+            <p class="text-muted">England</p>
+          </div>
+        </div>
+        <div class="col-sm-6 col-md-4 portfolio-item">
+          <img
+            style="width: 400px; height: 300px"
+            class="img-fluid"
+            src="assets/img/places/paris.jpg"
+          />
+          <div class="portfolio-caption">
+            <h4>Paris</h4>
+            <p class="text-muted">France</p>
+          </div>
+        </div>
+        <div class="col-sm-6 col-md-4 portfolio-item">
+          <img
+            style="width: 400px; height: 300px"
+            class="img-fluid"
+            src="assets/img/places/newyork.jpg"
+          />
+          <div class="portfolio-caption">
+            <h4>New York</h4>
+            <p class="text-muted">USA</p>
+          </div>
+        </div>
+        <div class="col-sm-6 col-md-4 portfolio-item">
+          <img
+            style="width: 400px; height: 300px"
+            class="img-fluid"
+            src="assets/img/places/berlin.jpg"
+          />
+          <div class="portfolio-caption">
+            <h4>Berlin</h4>
+            <p class="text-muted">Germany</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section id="about">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12 text-center">
+          <h2 class="text-uppercase">About</h2>
+          <h3 class="text-muted section-subheading">
+            Airbnb provides a platform for hosts to accommodate guests with
+            short-term lodging and tourism-related activities.
+          </h3>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-lg-12">
+          <ul class="list-group timeline">
+            <li class="list-group-item">
+              <div class="timeline-image">
+                <img
+                  class="rounded-circle img-fluid"
+                  src="assets/img/about/1.jpg"
+                />
+              </div>
+              <div class="timeline-panel">
+                <div class="timeline-heading">
+                  <h4>October 2007</h4>
+                  <h4 class="subheading">Idea Creation</h4>
+                </div>
+                <div class="timeline-body">
+                  <p class="text-muted">
+                    Airbnb was born in 2007 when two Hosts welcomed three guests
+                    to their San Francisco home, and has since grown to 4
+                    million Hosts who have welcomed more than 900 million guest
+                    arrivals in almost every country across the globe.
+                  </p>
+                </div>
+              </div>
+            </li>
+            <li class="list-group-item timeline-inverted">
+              <div class="timeline-image">
+                <img
+                  class="rounded-circle img-fluid"
+                  src="assets/img/about/2.jpg"
+                />
+              </div>
+              <div class="timeline-panel">
+                <div class="timeline-heading">
+                  <h4>March 2009</h4>
+                  <h4 class="subheading">Airbnb.com is Created</h4>
+                </div>
+                <div class="timeline-body">
+                  <p class="text-muted">
+                    The name of the company was shortened to Airbnb.com, and the
+                    site's content had expanded from air beds and shared spaces
+                    to a variety of properties including entire homes and
+                    apartments, private rooms, and other properties.
+                  </p>
+                </div>
+              </div>
+            </li>
+            <li class="list-group-item">
+              <div class="timeline-image">
+                <img
+                  class="rounded-circle img-fluid"
+                  src="assets/img/about/3.jpg"
+                />
+              </div>
+              <div class="timeline-panel">
+                <div class="timeline-heading">
+                  <h4>October 2013</h4>
+                  <h4 class="subheading">Transition to Full Service</h4>
+                </div>
+                <div class="timeline-body">
+                  <p class="text-muted">
+                    Airbnb had served 9,000,000 guests since its founding in
+                    August 2008. Nearly 250,000 properties were added in 2013.
+                  </p>
+                </div>
+              </div>
+            </li>
+            <li class="list-group-item timeline-inverted">
+              <div class="timeline-image">
+                <img
+                  class="rounded-circle img-fluid"
+                  src="assets/img/about/4.jpg"
+                />
+              </div>
+              <div class="timeline-panel">
+                <div class="timeline-heading">
+                  <h4>March 2020</h4>
+                  <h4 class="subheading">During the Pandemic</h4>
+                </div>
+                <div class="timeline-body">
+                  <p class="text-muted">
+                    CEO and Head of Community Brian Chesky penned a letter to
+                    hosts, pledging $250 million in payouts to host to
+                    compensate them for guest cancellations due to the pandemic.
+                  </p>
+                </div>
+              </div>
+            </li>
+            <li class="list-group-item timeline-inverted">
+              <div class="timeline-image">
+                <h4>Be Part<br />&nbsp;Of Our<br />&nbsp;Story!</h4>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section
+    id="contact"
+    style="background-image: url('assets/img/map-image.png')"
+  >
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12 text-center">
+          <h2 class="text-uppercase section-heading">Contact Us</h2>
+          <h3 class="text-white section-subheading">
+            Have any feedback? Please, feel free to send us a message.
+          </h3>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-lg-12">
+          <form id="contactForm" name="contactForm" novalidate="novalidate">
+            <div class="form-row">
+              <div class="mx-auto col-md-6">
+                <div class="form-group">
+                  <input
+                    class="form-control"
+                    type="text"
+                    name="title"
+                    placeholder="Subject *"
+                    required=""
+                  />
+                </div>
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="col-md-6">
+                <div class="form-group">
+                  <input
+                    class="form-control"
+                    type="text"
+                    name="username"
+                    placeholder="Your Name *"
+                    required=""
+                  />
+                </div>
+                <div class="form-group">
+                  <input
+                    class="form-control"
+                    type="email"
+                    name="email"
+                    placeholder="Your Email *"
+                    required=""
+                  />
+                </div>
+                <div class="form-group">
+                  <input
+                    class="form-control"
+                    type="tel"
+                    name="phone"
+                    placeholder="Your Phone *"
+                    required=""
+                  />
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <textarea
+                    class="form-control"
+                    name="message"
+                    placeholder="Your Message *"
+                    required=""
+                  ></textarea>
+                </div>
+              </div>
+              <div class="clearfix"></div>
+              <div class="col-lg-12 text-center">
+                <div id="success"></div>
+                <button
+                  class="btn btn-primary btn-xl text-uppercase"
+                  id="sendMessageButton"
+                  type="submit"
+                >
+                  Send Message
+                </button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+  <footer>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-4">
+          <span class="copyright">Copyright&nbsp;© Airbnb 2021</span>
+        </div>
+        <div class="col-md-4">
+          <ul class="list-inline social-buttons">
+            <li class="list-inline-item">
+              <a href="#"><i class="fa fa-twitter"></i></a>
+            </li>
+            <li class="list-inline-item">
+              <a href="#"><i class="fa fa-facebook"></i></a>
+            </li>
+            <li class="list-inline-item">
+              <a href="#"><i class="fa fa-linkedin"></i></a>
+            </li>
+          </ul>
+        </div>
+        <div class="col-md-4">
+          <ul class="list-inline quicklinks">
+            <li class="list-inline-item"><a href="#">Privacy Policy</a></li>
+            <li class="list-inline-item"><a href="#">Terms of Use</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </footer>
+  <script src="assets/js/jquery.min.js"></script>
+  <script src="assets/bootstrap/js/bootstrap.min.js"></script>
+  <script src="assets/js/jquery.easing.min.js"></script>
+  <script src="assets/js/agency.js"></script>
+</body>
