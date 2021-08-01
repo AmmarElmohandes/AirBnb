@@ -8,6 +8,7 @@ import { Observable, Subscription } from 'rxjs';
 import { AppState } from 'src/app/State/app.state';
 import { setId } from 'src/app/Actions/hosts.action';
 import { setPropertyId } from 'src/app/Actions/property.action';
+import { formatDate } from '@angular/common';
 @Component({
   selector: 'app-property',
   templateUrl: './property.component.html',
@@ -30,7 +31,11 @@ export class PropertyComponent implements OnInit {
     {
       "name": "United Kingdom",
       "code": "UK"
-    }];
+    },{
+      "name":"Egypt",
+      "code":"Eg"
+    }
+  ];
 this.cities = [{
       "name": "Mumbai",
       "country": "India",
@@ -50,7 +55,15 @@ this.cities = [{
       "name": "Crowly",
       "country": "United Kingdom",
       "code": "CRL"
-    }];
+    },
+    {
+      "name":"Alexandria",
+      "country":"Egypt",
+      "Code":"Eg"
+
+    }
+  
+  ];
     this.areas=[
       "Private Room",
        "sharedRoom"
@@ -76,7 +89,8 @@ this.cities = [{
   filteredCities: Array<any> = [];
   areas:Array<any> = [];
   propertyTypes:Array<any> = [];
-
+  currentDate = new Date();
+  const  = formatDate(this.currentDate, 'yyyy-MM-dd', 'en-US');
 
   form = new FormGroup({
     Title: new FormControl('', Validators.required),

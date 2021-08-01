@@ -1,4 +1,4 @@
-            
+
 <section
   style="
     background-image: url('assets/img/header-bg.jpg');
@@ -33,8 +33,12 @@
 
 
       <div class="form-group">
-        <label>Property Type :</label>
-                <select style="width:100%" formControlName="propertyType">
+
+        
+
+         <label>Property Type :</label>
+
+                <select class="text-input" formControlName="propertyType">
                     <option *ngFor="let propertyType of propertyTypes" [ngValue]="propertyType">{{propertyType}}</option>
                 </select>
                   <div *ngIf="propertyType?.touched && propertyType?.pristine" class="alert alert-danger">
@@ -43,19 +47,15 @@
                    <div *ngIf=" propertyType?.dirty && propertyType?.invalid" class="alert alert-danger">
                        Invalid propertyType.
                 </div>
-        <div
-          *ngIf="propertyType?.dirty && propertyType?.invalid"
-          class="alert alert-danger"
-        >
-          Invalid propertyType.
+         
         </div>
-      </div>
+  
 
             
 
       <div class="form-group">
         <label>Area Type</label>
-        <select style="width:100%" formControlName="AreaType">
+        <select  formControlName="AreaType">
             <option *ngFor="let area of areas" [ngValue]="area">{{area}}</option>
         </select>
 
@@ -66,6 +66,7 @@
                 Invalid AreaType.
         </div>
       </div>
+  
       <div class="row">
         <label>Country :</label>
                   
@@ -87,8 +88,14 @@
                             City is Required.
                          </div>
         </div>
+
       </div>
->>>>>>> 5636d0af2da2a6590f6176a9a3089f4ec38a9c21
+
+
+       
+     
+
+
 
       <div class="row">
         <div class="form-group col">
@@ -133,6 +140,7 @@
             type="date"
             name="AvailableStartDate"
             placeholder="AvailableStartDate"
+            min={{const}}
           />
           <div
             *ngIf="AvailableStartDate?.touched && AvailableStartDate?.invalid"
@@ -148,6 +156,7 @@
             type="date"
             name="AvailableEndDate"
             placeholder="AvailableEndDate"
+            min={{const}}
           />
           <div
             *ngIf="AvailableEndDate?.touched && AvailableEndDate?.invalid"
