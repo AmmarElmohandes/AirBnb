@@ -1,6 +1,35 @@
-<input type="file" #file placeholder="Choose file" (change)="uploadFile(file.files)" style="display:none;">
-    <button type="button" class="btn btn-success" (click)="file.click()">Upload photo</button>
-<!-- <img src="https://drive.google.com/drive/folders/1WhdrQVGxiOH06Y7hb8eJg3d0eW0MnOBw?usp=sharing/Screenshot (6).png"> -->
-<!-- <iframe src="https://drive.google.com/file/d/1vukobnJMawRCQ4lRmwLp5oCyCRBDqFNc/preview" width="640" height="480" allow="autoplay"></iframe>
- -->
- <img src={{imgsrc}}>
+<section
+  style="
+    height: 700px;
+    background-image: url('assets/img/header-bg.jpg');
+    background-size: cover;
+  "
+  class="photos"
+>
+  <div class="form-container">
+    <form action="">
+      <h2 class="text-center"><strong>Upload</strong> Photos.</h2>
+      <div class="form-group">
+        <input
+          type="file"
+          #file
+          placeholder="Choose file"
+          (change)="uploadFile(file.files)"
+          style="display: none"
+        />
+      </div>
+      <div class="form-group">
+        <button
+          type="button"
+          class="btn btn-primary btn-block"
+          (click)="file.click()"
+        >
+          Upload photo
+        </button>
+      </div>
+      <div class="form-group">
+        <img style="width: 400px; height: 300px" src="{{ imgsrc }}" />
+      </div>
+    </form>
+  </div>
+</section>
