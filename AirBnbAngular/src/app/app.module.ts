@@ -50,4 +50,5 @@ import { PhotosComponent } from './Components/photos/photos.component';
   providers: [RegisterService],
   bootstrap: [AppComponent],
 })
+
 export class AppModule {}

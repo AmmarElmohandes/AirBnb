@@ -1,13 +1,13 @@
 
-<button
+<!-- <button
   *ngIf="authService.isLoggedIn()"
   routerLink=" "
   class="btn btn-danger"
   (click)="authService.logout()"
 >
   Logout
-</button>
-<button routerLink="/register" class="btn btn success">register</button> -->
+</button> -->
+<!-- <button routerLink="/register" class="btn btn success">register</button> --> -->
 
 <body>
   <nav
@@ -43,16 +43,23 @@
           </li>
           <li class="nav-item">
             <a
-              *ngIf="!authService.isLoggedIn()"
+              *ngIf="!authService.isLoggedIn() "
               routerLink="/register"
               class="nav-link js-scroll-trigger"
+              (click)="authService.setFlag(1)"
+              
               href=""
               >Become a Host</a
             >
           </li>
           <li class="nav-item">
-            <a routerLink="/register" class="nav-link js-scroll-trigger" href=""
+            <a routerLink="/register" *ngIf="!authService.isLoggedIn()" (click)="authService.setFlag(2)" class="nav-link js-scroll-trigger" href=""
               >Register</a
+            >
+          </li>
+          <li class="nav-item">
+            <a routerLink="/" *ngIf="authService.isLoggedIn()" (click)="authService.logout()" class="nav-link js-scroll-trigger" href=""
+              >Log Out</a
             >
           </li>
         </ul>
@@ -95,48 +102,41 @@
             <div><span>Find Your Place</span></div>
           </div>
           <div id="basic-div">
+            <form [formGroup]='searchForm' (ngSubmit)='save()'>
             <div class="row no-gutters">
               <div class="col-sm-12 col-md-12 col-lg-2">
                 <div class="inputwithicon">
                   <label for="">Check In:</label>
-                  <input type="date" class="text-input" />
+                  <input type="date" class="text-input" min={{const}}/>
                 </div>
               </div>
               <div class="col-sm-12 col-md-12 col-lg-2">
                 <div class="inputwithicon">
                   <label for="">Check Out:</label>
-                  <input type="date" class="text-input" />
+                  <input type="date" class="text-input"  min="{{const}}" />
                 </div>
               </div>
               <div class="col-sm-12 col-md-12 col-lg-2">
                 <div class="inputwithicon">
-                  <label for="">Country:</label>
-                  <select class="text-input">
-                    <option selected disabled value="undefined">
-                      Choose Country
-                    </option>
-                    <option value="12">Egypt</option>
-                    <option value="13">USA</option>
-                    <option value="14">France</option>
-                    <option value="14">England</option>
-                    <option value="14">Germany</option>
-                  </select>
+                    <label>Country :</label>
+                 
+                    <select class="text-input" formControlName="Country">
+                        <option *ngFor="let country of countries" [ngValue]="country.name">{{country?.name}}</option>
+                    </select>
+                         <div *ngIf="Country?.touched && Country?.pristine" class="alert alert-danger">
+                            Country is Required.
+                </div>
                 </div>
               </div>
               <div class="col-sm-12 col-md-12 col-lg-2">
                 <div class="inputwithicon">
-                  <label for="">City:</label>
-                  <select class="text-input">
-                    <option selected disabled value="undefined">
-                      Choose City
-                    </option>
-                    <option value="12">Cairo</option>
-                    <option value="13">Alexandria</option>
-                    <option value="14">New York</option>
-                    <option value="14">Paris</option>
-                    <option value="14">London</option>
-                    <option value="14">Berlin</option>
-                  </select>
+                    <label>City :</label>
+                    <select class="text-input" formControlName="City">
+                        <option *ngFor="let city of filteredCities"  [ngValue]="city.name">{{city?.name}}</option>
+                          </select>
+                     <div *ngIf="City?.touched && City?.pristine" class="alert alert-danger">
+                        City is Required.
+                     </div>
                 </div>
               </div>
               <div class="col-sm-12 col-md-12 col-lg-2">
@@ -152,6 +152,8 @@
                 </div>
               </div>
             </div>
+        </form>
+
           </div>
           <div id="features-div"></div>
           <div class="row" id="buttons-div">

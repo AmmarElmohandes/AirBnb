@@ -21,9 +21,13 @@
             </div>
             
             <div class="form-group">
-                <input 
+                <!-- <input 
                 formControlName="propertyType"
-                class="form-control" type="text" name="propertyType" placeholder="propertyType" />
+                class="form-control" type="text" name="propertyType" placeholder="propertyType" /> -->
+                <label>Property Type :</label>
+                <select style="width:100%" formControlName="propertyType">
+                    <option *ngFor="let propertyType of propertyTypes" [ngValue]="propertyType">{{propertyType}}</option>
+                </select>
                   <div *ngIf="propertyType?.touched && propertyType?.pristine" class="alert alert-danger">
                     propertyType is Required.
                 </div>
@@ -33,13 +37,18 @@
             </div>
             
             <div class="form-group">
-                <input
+                <!-- <input
                     formControlName="AreaType"
                     class="form-control"
                     type="text"
                     name="AreaType"
                     placeholder="AreaType"
-                />
+                /> -->
+                <label>Area Type</label>
+                <select style="width:100%" formControlName="AreaType">
+                    <option *ngFor="let area of areas" [ngValue]="area">{{area}}</option>
+                </select>
+        
                  <div *ngIf="AreaType?.touched && AreaType?.pristine" class="alert alert-danger">
                     AreaType is Required.
                 </div>
@@ -47,37 +56,47 @@
                         Invalid AreaType.
                 </div>
             </div>
-            <div class="row">
-                <div class="form-group col">
-                    <input
-                        formControlName="City"
-                        class="form-control"
-                        type="text"
-                        name="City"
-                        placeholder="City"
-                    />
-                     <div *ngIf="City?.touched && City?.pristine" class="alert alert-danger">
-                        City is Required.
-                     </div>
-                </div>
-                </div>
+            
 
 
                 <div class="row">
                 <div class="form-group col">
-                    <input
+                    <label>Country :</label>
+                    <!-- <input
                         formControlName="Country"
                         class="form-control"
                         type="text"
                         name="Country"
                         placeholder="Country"
-                    />
+                    /> -->
+                    <select style="width:100%" formControlName="Country">
+                        <option *ngFor="let country of countries" [ngValue]="country.name">{{country?.name}}</option>
+                    </select>
+            
+                
                          <div *ngIf="Country?.touched && Country?.pristine" class="alert alert-danger">
                             Country is Required.
                 </div>
                 </div>
                 </div>
-        
+                <div class="row">
+                    <div class="form-group col">
+                        <!-- <input
+                            formControlName="City"
+                            class="form-control"
+                            type="text"
+                            name="City"
+                            placeholder="City"
+                        /> -->
+                        <label>City :</label>
+                        <select style="width:100%" formControlName="City">
+                            <option *ngFor="let city of filteredCities"  [ngValue]="city.name">{{city?.name}}</option>
+                              </select>
+                         <div *ngIf="City?.touched && City?.pristine" class="alert alert-danger">
+                            City is Required.
+                         </div>
+                    </div>
+                    </div>
                 
             <div class="row">
                 <div class="form-group col">
@@ -88,6 +107,7 @@
                         name="PropertyAddress"
                         placeholder="PropertyAddress"
                     />
+                    
                 </div>
                          <div *ngIf="PropertyAddress?.touched && PropertyAddress?.pristine" class="alert alert-danger">
                             PropertyAddress is Required.

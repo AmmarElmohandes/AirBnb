@@ -23,8 +23,61 @@ export class PropertyComponent implements OnInit {
  hostId2:number=0
   property=new Property(0,"","","","","","","",new Date,new Date,0,0);
   ngOnInit(): void {
-
+    this.countries = [{
+      "name": "India",
+      "code": "IN"
+    },
+    {
+      "name": "United Kingdom",
+      "code": "UK"
+    }];
+this.cities = [{
+      "name": "Mumbai",
+      "country": "India",
+      "code": "MB"
+    },
+    {
+      "name": "Delhi",
+      "country": "India",
+      "code": "DL"
+    },
+    {
+      "name": "London",
+      "country": "United Kingdom",
+      "code": "LON"
+    },
+    {
+      "name": "Crowly",
+      "country": "United Kingdom",
+      "code": "CRL"
+    }];
+    this.areas=[
+      "Private Room",
+       "sharedRoom"
+    
+  
+  ];
+  this.propertyTypes=
+  ["Hotel Room",
+  "Apartment"];
+    this.form.valueChanges.subscribe(
+      data=>{
+        if (JSON.stringify(data) !== JSON.stringify({})) {
+          if(data.Country){
+           this.filteredCities = this.cities.filter(city=>city.country===data.Country);
+      //     steps.filter(step => step.id === stepId)
+         }
+       }
+      }
+    )
   }
+  countries:Array<any> = [];
+  cities:Array<any> = [];
+  filteredCities: Array<any> = [];
+  areas:Array<any> = [];
+  propertyTypes:Array<any> = [];
+
+
   form = new FormGroup({
     Title: new FormControl('', Validators.required),
     propertyType: new FormControl('', Validators.required),
@@ -40,6 +93,7 @@ export class PropertyComponent implements OnInit {
 
 
   });
+  
 
   get Title() {
     return this.form.get('Title');
@@ -51,10 +105,10 @@ export class PropertyComponent implements OnInit {
     return this.form.get('AreaType');
   }
   get City() {
-    return this.form.get('City');
+    return this.form.get('City.name');
   }
   get Country() {
-    return this.form.get('Country');
+    return this.form.get('Country.name');
   }
   get PropertyAddress() {
     return this.form.get('PropertyAddress');
@@ -76,8 +130,10 @@ export class PropertyComponent implements OnInit {
   // }
   save()
   {
+  
     this.error=""
     this.property = this.form.value;
+
     let currentPageSub :Subscription;
 
    currentPageSub = this.hostId.subscribe(

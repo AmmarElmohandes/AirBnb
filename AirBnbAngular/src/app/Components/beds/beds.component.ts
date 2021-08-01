@@ -31,6 +31,7 @@ form = new FormGroup({
  
 })
   get NoOfKingbeds() {
+    
     return this.form.get('NoOfKingbeds');
   }
   get NoOfSinglebeds() {
@@ -42,11 +43,25 @@ form = new FormGroup({
   
   bed()
   {
-    
+  if(this.form.get('NoOfKingbeds')){
+    this
+  }
+    this.error=""
     
      this.beds = this.form.value;
+     if(this.form.get('NoOfKingbeds')?.value==""){
+      this.beds.NoOfKingbeds=0
+    } 
+    if(this.form.get('NoOfSinglebeds')?.value==""){
+      this.beds.NoOfSinglebeds=0;
+    }
+    if(this.form.get('NoOfDoublebeds')?.value==""){
+this.beds.NoOfDoublebeds=0
+    }
+    
+    
      let currentPageSub :Subscription;
-
+                       
      currentPageSub = this.propertyId.subscribe(
    (propertyId: number) => {
        this.beds.PropertyId=propertyId;
