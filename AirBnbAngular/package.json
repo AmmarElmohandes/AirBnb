@@ -20,8 +20,14 @@
     "@angular/router": "~12.1.1",
     "@auth0/angular-jwt": "^5.0.2",
     "@ngrx/store": "^12.3.0",
+
     "bootstrap": "^5.0.2",
     "googleapis": "^39.2.0",
+
+
+
+    
+
     "jquery": "^3.6.0",
     "popper.js": "^1.16.1",
     "rxjs": "~6.6.0",

@@ -1,30 +1,41 @@
-<section class="proper">
-    <div class="form-container">
-        <form [formGroup]='form' (ngSubmit)='save()'>
-            <div *ngIf="error" class="alert alert-danger">
-                {{error}}
-            </div>
-            <div *ngIf="success" class="alert alert-success">
-                {{success}}
-            </div>
-            <div class="form-group">
-                <input
-                formControlName="Title"
-                    class="form-control"
-                    type="text"
-                    name="Title"
-                    placeholder="Title"
-                />
-                <div *ngIf="Title?.touched && Title?.invalid" class="alert alert-danger">
-                    Title is Required.
-                </div>     
-            </div>
-            
-            <div class="form-group">
-                <!-- <input 
-                formControlName="propertyType"
-                class="form-control" type="text" name="propertyType" placeholder="propertyType" /> -->
-                <label>Property Type :</label>
+
+    
+          
+<section
+  style="
+    background-image: url('assets/img/header-bg.jpg');
+    background-size: cover;
+  "
+  class="property"
+>
+  <div class="form-container">
+    <form [formGroup]="form" (ngSubmit)="save()">
+      <h2 class="text-center"><strong>Create</strong> a new Property.</h2>
+      <div *ngIf="error" class="alert alert-danger">
+        {{ error }}
+      </div>
+      <div *ngIf="success" class="alert alert-success">
+        {{ success }}
+      </div>
+      <div class="form-group">
+        <input
+          formControlName="Title"
+          class="form-control"
+          type="text"
+          name="Title"
+          placeholder="Title"
+        />
+        <div
+          *ngIf="Title?.touched && Title?.invalid"
+          class="alert alert-danger"
+        >
+          Title is Required.
+        </div>
+      </div>
+
+
+      <div class="form-group">
+         <label>Property Type :</label>
                 <select style="width:100%" formControlName="propertyType">
                     <option *ngFor="let propertyType of propertyTypes" [ngValue]="propertyType">{{propertyType}}</option>
                 </select>
@@ -34,17 +45,13 @@
                    <div *ngIf=" propertyType?.dirty && propertyType?.invalid" class="alert alert-danger">
                        Invalid propertyType.
                 </div>
-            </div>
-            
-            <div class="form-group">
-                <!-- <input
-                    formControlName="AreaType"
-                    class="form-control"
-                    type="text"
-                    name="AreaType"
-                    placeholder="AreaType"
-                /> -->
-                <label>Area Type</label>
+          Invalid propertyType.
+        </div>
+      </div>
+
+
+      <div class="form-group">
+        <label>Area Type</label>
                 <select style="width:100%" formControlName="AreaType">
                     <option *ngFor="let area of areas" [ngValue]="area">{{area}}</option>
                 </select>
@@ -55,13 +62,11 @@
                 <div *ngIf="AreaType?.invalid && AreaType?.dirty" class="alert alert-danger">
                         Invalid AreaType.
                 </div>
-            </div>
-            
-
-
-                <div class="row">
-                <div class="form-group col">
-                    <label>Country :</label>
+      </div>
+  
+      <div class="row">
+         <div class="form-group col">
+        <label>Country :</label>
                     <!-- <input
                         formControlName="Country"
                         class="form-control"
@@ -77,117 +82,116 @@
                          <div *ngIf="Country?.touched && Country?.pristine" class="alert alert-danger">
                             Country is Required.
                 </div>
-                </div>
-                </div>
-                <div class="row">
-                    <div class="form-group col">
-                        <!-- <input
-                            formControlName="City"
-                            class="form-control"
-                            type="text"
-                            name="City"
-                            placeholder="City"
-                        /> -->
-                        <label>City :</label>
+        </div>
+        <div class="form-group col">
+           <label>City :</label>
                         <select style="width:100%" formControlName="City">
                             <option *ngFor="let city of filteredCities"  [ngValue]="city.name">{{city?.name}}</option>
                               </select>
                          <div *ngIf="City?.touched && City?.pristine" class="alert alert-danger">
                             City is Required.
                          </div>
-                    </div>
-                    </div>
-                
-            <div class="row">
-                <div class="form-group col">
-                    <input
-                        formControlName="PropertyAddress"
-                        class="form-control"
-                        type="text"
-                        name="PropertyAddress"
-                        placeholder="PropertyAddress"
-                    />
-                    
-                </div>
-                         <div *ngIf="PropertyAddress?.touched && PropertyAddress?.pristine" class="alert alert-danger">
-                            PropertyAddress is Required.
-                
-                </div>
-            </div>
-            
+        </div>
+       
+      </div>
 
-            <div class="row">
-                <div class="form-group col">
-                    <input
-                        formControlName="PropertyDescription"
-                        class="form-control"
-                        type="text"
-                        name="PropertyDescription"
-                        placeholder="PropertyDescription"
-                    />
-                </div>
-                         <div *ngIf="PropertyDescription?.touched && PropertyDescription?.pristine" class="alert alert-danger">
-                            PropertyAddress is Required.
-                
-                </div>
-            </div>
-            
-            <div class="row">
-            <div class="form-group col">
-                <input
-                    formControlName="AvailableStartDate"
-                    class="form-control"
-                    type="date"
-                    name="AvailableStartDate"
-                    placeholder="AvailableStartDate"
-                />
-            </div>
-                 <div *ngIf="AvailableStartDate?.touched && AvailableStartDate?.invalid" class="alert alert-danger">
-                    AvailableStartDate is Required.
-            </div>
-            </div>
 
-            <div class="row">
-            <div class="form-group col">
-                <input
-                    formControlName="AvailableEndDate"
-                    class="form-control"
-                    type="date"
-                    name="AvailableEndDate"
-                    placeholder="AvailableEndDate"
-                />
-            </div>
-                 <div *ngIf="AvailableEndDate?.touched && AvailableEndDate?.invalid" class="alert alert-danger">
-                    AvailableEndDate is Required.
-            </div>
-            </div>
-            
-            <div class="row">
-            <div class="form-group col">
-                <input
-                    formControlName="PricePerNight"
-                    class="form-control"
-                    type="number"
-                    name="PricePerNight"
-                    placeholder="PricePerNight"
-                />
-            </div>
-                 <div *ngIf="PricePerNight?.touched && PricePerNight?.invalid" class="alert alert-danger">
-                    PricePerNight is Required.
-            </div>
-            </div>
-            
-            <div class="row">
-          
-                
-            </div>
+      <div class="row">
+        <div class="form-group col">
+          <input
+            formControlName="PropertyAddress"
+            class="form-control"
+            type="text"
+            name="PropertyAddress"
+            placeholder="PropertyAddress"
+          />
+          <div
+            *ngIf="PropertyAddress?.touched && PropertyAddress?.pristine"
+            class="alert alert-danger"
+          >
+            PropertyAddress is Required.
+          </div>
+        </div>
+        <div class="form-group col">
+          <input
+            formControlName="PropertyDescription"
+            class="form-control"
+            type="text"
+            name="PropertyDescription"
+            placeholder="PropertyDescription"
+          />
+          <div
+            *ngIf="
+              PropertyDescription?.touched && PropertyDescription?.pristine
+            "
+            class="alert alert-danger"
+          >
+            PropertyDescription is Required.
+          </div>
+        </div>
+      </div>
 
-            <div class="form-group">
-                <button class="btn btn-primary btn-block" type="submit">save</button>
-            </div>
-            <div *ngIf="success" class="form-group">
-                <button  class="btn btn-primary btn-block" routerLink="/beds" type="submit">next</button>
-            </div>
-        </form>
-    </div>
+      <div class="row">
+        <div class="form-group col">
+          <input
+            formControlName="AvailableStartDate"
+            class="form-control"
+            type="date"
+            name="AvailableStartDate"
+            placeholder="AvailableStartDate"
+          />
+          <div
+            *ngIf="AvailableStartDate?.touched && AvailableStartDate?.invalid"
+            class="alert alert-danger"
+          >
+            AvailableStartDate is Required.
+          </div>
+        </div>
+        <div class="form-group col">
+          <input
+            formControlName="AvailableEndDate"
+            class="form-control"
+            type="date"
+            name="AvailableEndDate"
+            placeholder="AvailableEndDate"
+          />
+          <div
+            *ngIf="AvailableEndDate?.touched && AvailableEndDate?.invalid"
+            class="alert alert-danger"
+          >
+            AvailableEndDate is Required.
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <input
+          formControlName="PricePerNight"
+          class="form-control"
+          type="number"
+          name="PricePerNight"
+          placeholder="PricePerNight"
+        />
+        <div
+          *ngIf="PricePerNight?.touched && PricePerNight?.invalid"
+          class="alert alert-danger"
+        >
+          PricePerNight is Required.
+        </div>
+      </div>
+
+      <div class="form-group">
+        <button class="btn btn-primary btn-block" type="submit">Submit</button>
+      </div>
+      <div *ngIf="success" class="form-group">
+        <button
+          class="btn btn-primary btn-block"
+          routerLink="/beds"
+          type="submit"
+        >
+          Next
+        </button>
+      </div>
+    </form>
+  </div>
 </section>
