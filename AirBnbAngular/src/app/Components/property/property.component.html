@@ -1,4 +1,3 @@
-
 <section
   style="
     background-image: url('assets/img/header-bg.jpg');
@@ -31,71 +30,123 @@
         </div>
       </div>
 
-
-      <div class="form-group">
-
-        
-
-         <label>Property Type :</label>
-
-                <select class="text-input" formControlName="propertyType">
-                    <option *ngFor="let propertyType of propertyTypes" [ngValue]="propertyType">{{propertyType}}</option>
-                </select>
-                  <div *ngIf="propertyType?.touched && propertyType?.pristine" class="alert alert-danger">
-                    propertyType is Required.
-                </div>
-                   <div *ngIf=" propertyType?.dirty && propertyType?.invalid" class="alert alert-danger">
-                       Invalid propertyType.
-                </div>
-         
-        </div>
-  
-
-            
-
-      <div class="form-group">
-        <label>Area Type</label>
-        <select  formControlName="AreaType">
-            <option *ngFor="let area of areas" [ngValue]="area">{{area}}</option>
-        </select>
-
-         <div *ngIf="AreaType?.touched && AreaType?.pristine" class="alert alert-danger">
-            AreaType is Required.
-        </div>
-        <div *ngIf="AreaType?.invalid && AreaType?.dirty" class="alert alert-danger">
-                Invalid AreaType.
-        </div>
-      </div>
-  
       <div class="row">
-        <label>Country :</label>
-                  
-                    <select style="width:100%" formControlName="Country">
-                        <option *ngFor="let country of countries" [ngValue]="country.name">{{country?.name}}</option>
-                    </select>
-            
-                
-                         <div *ngIf="Country?.touched && Country?.pristine" class="alert alert-danger">
-                            Country is Required.
-                </div>
-        
         <div class="form-group col">
-            <label>City :</label>
-                        <select style="width:100%" formControlName="City">
-                            <option *ngFor="let city of filteredCities"  [ngValue]="city.name">{{city?.name}}</option>
-                              </select>
-                         <div *ngIf="City?.touched && City?.pristine" class="alert alert-danger">
-                            City is Required.
-                         </div>
+          <label>Property Type :</label>
+          <select class="form-control" formControlName="propertyType">
+            <option
+              *ngFor="let propertyType of propertyTypes"
+              [ngValue]="propertyType"
+            >
+              {{ propertyType }}
+            </option>
+          </select>
+          <div
+            *ngIf="propertyType?.touched && propertyType?.pristine"
+            class="alert alert-danger"
+          >
+            PropertyType is Required.
+          </div>
+          <div
+            *ngIf="propertyType?.dirty && propertyType?.invalid"
+            class="alert alert-danger"
+          >
+            Invalid PropertyType.
+          </div>
         </div>
 
+        <div class="form-group col">
+          <label>Area Type</label>
+          <select class="form-control" formControlName="AreaType">
+            <option *ngFor="let area of areas" [ngValue]="area">
+              {{ area }}
+            </option>
+          </select>
+
+          <div
+            *ngIf="AreaType?.touched && AreaType?.pristine"
+            class="alert alert-danger"
+          >
+            AreaType is Required.
+          </div>
+          <div
+            *ngIf="AreaType?.invalid && AreaType?.dirty"
+            class="alert alert-danger"
+          >
+            Invalid AreaType.
+          </div>
+        </div>
       </div>
 
+      <div class="row">
+        <div class="form-group col">
+          <label>Country :</label>
+          <select class="form-control" formControlName="Country">
+            <option *ngFor="let country of countries" [ngValue]="country.name">
+              {{ country?.name }}
+            </option>
+          </select>
 
-       
-     
+          <div
+            *ngIf="Country?.touched && Country?.pristine"
+            class="alert alert-danger"
+          >
+            Country is Required.
+          </div>
+        </div>
 
+        <div class="form-group col">
+          <label>City :</label>
+          <select class="form-control" formControlName="City">
+            <option *ngFor="let city of filteredCities" [ngValue]="city.name">
+              {{ city?.name }}
+            </option>
+          </select>
+          <div
+            *ngIf="City?.touched && City?.pristine"
+            class="alert alert-danger"
+          >
+            City is Required.
+          </div>
+        </div>
+      </div>
 
+      <div class="row">
+        <div class="form-group col">
+          <label for="">Check In:</label>
+          <input
+            formControlName="AvailableStartDate"
+            class="form-control"
+            type="date"
+            name="AvailableStartDate"
+            placeholder="AvailableStartDate"
+            min="{{ const }}"
+          />
+          <div
+            *ngIf="AvailableStartDate?.touched && AvailableStartDate?.invalid"
+            class="alert alert-danger"
+          >
+            AvailableStartDate is Required.
+          </div>
+        </div>
+        <div class="form-group col">
+          <label for="">Check Out:</label>
+          <input
+            formControlName="AvailableEndDate"
+            class="form-control"
+            type="date"
+            name="AvailableEndDate"
+            placeholder="AvailableEndDate"
+            min="{{ const }}"
+          />
+          <div
+            *ngIf="AvailableEndDate?.touched && AvailableEndDate?.invalid"
+            class="alert alert-danger"
+          >
+            AvailableEndDate is Required.
+          </div>
+        </div>
+      </div>
 
       <div class="row">
         <div class="form-group col">
@@ -128,41 +179,6 @@
             class="alert alert-danger"
           >
             PropertyDescription is Required.
-          </div>
-        </div>
-      </div>
-
-      <div class="row">
-        <div class="form-group col">
-          <input
-            formControlName="AvailableStartDate"
-            class="form-control"
-            type="date"
-            name="AvailableStartDate"
-            placeholder="AvailableStartDate"
-            min={{const}}
-          />
-          <div
-            *ngIf="AvailableStartDate?.touched && AvailableStartDate?.invalid"
-            class="alert alert-danger"
-          >
-            AvailableStartDate is Required.
-          </div>
-        </div>
-        <div class="form-group col">
-          <input
-            formControlName="AvailableEndDate"
-            class="form-control"
-            type="date"
-            name="AvailableEndDate"
-            placeholder="AvailableEndDate"
-            min={{const}}
-          />
-          <div
-            *ngIf="AvailableEndDate?.touched && AvailableEndDate?.invalid"
-            class="alert alert-danger"
-          >
-            AvailableEndDate is Required.
           </div>
         </div>
       </div>
