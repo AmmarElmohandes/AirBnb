@@ -19,14 +19,39 @@ export class HomeComponent implements OnInit {
   cities:Array<any> = [];
   filteredCities: Array<any> = [];
   ngOnInit(): void {
-    this.countries = [{
+    this.countries =
+  [
+    {
       "name": "India",
       "code": "IN"
     },
     {
       "name": "United Kingdom",
       "code": "UK"
-    }];
+    },
+    {
+      "name":"Egypt",
+      "code":"Eg"
+    },
+    {
+      "name":"France",
+      "code":"Fr"
+    },
+    {
+      "name":"USA",
+      "code":"US"
+    },
+    {
+      "name":"Germany",
+      "code":"Gr"
+    },
+    {
+      "name":"Indonesia",
+      "code":"In"
+    }
+
+  ];
+
 this.cities = [{
       "name": "Mumbai",
       "country": "India",
@@ -46,8 +71,45 @@ this.cities = [{
       "name": "Crowly",
       "country": "United Kingdom",
       "code": "CRL"
-    }];
-   
+    },
+    {
+      "name":"Alexandria",
+      "country":"Egypt",
+      "code":"Eg"
+    },
+    {
+      "name":"Cairo",
+      "country":"Egypt",
+      "Code":"Eg"
+    },
+    {
+      "name":"Paris",
+      "country":"France",
+      "Code":"Fr"
+    },
+    {
+      "name":"New York",
+      "country":"USA",
+      "Code":"US"
+    },
+    {
+      "name":"Los Angeles",
+      "country":"USA",
+      "Code":"US"
+    },
+    {
+      "name":"Berlin",
+      "country":"Germany",
+      "Code":"Gr"
+    },
+    {
+      "name":"Bali",
+      "country":"Indonesia",
+      "Code":"In"
+    }
+
+];
+
 
 
     this.searchForm.valueChanges.subscribe(
@@ -59,7 +121,7 @@ this.cities = [{
          }
        }
       }
-    ) 
+    )
   }
   searchForm=new FormGroup({
     CheckIn: new FormControl('', Validators.required),
