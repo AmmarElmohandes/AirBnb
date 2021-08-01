@@ -41,6 +41,12 @@ success:string=""
     {
 
     this.guest = this.form.value;
+    if(this.form.get('NoOfAdultGuests')?.value==""){
+this.guest.NoOfAdultGuests=0
+    }
+    if(this.form.get('NoOfChildGuests')?.value==""){
+      this.guest.NoOfChildGuests=0
+    }
     // this.guest.PropertyId=4
     let currentPageSub :Subscription;
 

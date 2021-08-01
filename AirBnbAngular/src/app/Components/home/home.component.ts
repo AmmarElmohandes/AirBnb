@@ -4,6 +4,8 @@ import { Component, OnInit } from '@angular/core';
 import '../../../assets/js/jquery.min.js'
 import '../../../assets/bootstrap/js/bootstrap.min.js'
 import '../../../assets/js/jquery.easing.min.js'
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { formatDate } from '@angular/common';
 
 @Component({
   selector: 'home',
@@ -13,8 +15,70 @@ import '../../../assets/js/jquery.easing.min.js'
 export class HomeComponent implements OnInit {
 
   constructor(public authService: AuthService) { }
-
+  countries:Array<any> = [];
+  cities:Array<any> = [];
+  filteredCities: Array<any> = [];
   ngOnInit(): void {
-  }
+    this.countries = [{
+      "name": "India",
+      "code": "IN"
+    },
+    {
+      "name": "United Kingdom",
+      "code": "UK"
+    }];
+this.cities = [{
+      "name": "Mumbai",
+      "country": "India",
+      "code": "MB"
+    },
+    {
+      "name": "Delhi",
+      "country": "India",
+      "code": "DL"
+    },
+    {
+      "name": "London",
+      "country": "United Kingdom",
+      "code": "LON"
+    },
+    {
+      "name": "Crowly",
+      "country": "United Kingdom",
+      "code": "CRL"
+    }];
+   
 
+
+    this.searchForm.valueChanges.subscribe(
+      data=>{
+        if (JSON.stringify(data) !== JSON.stringify({})) {
+          if(data.Country){
+           this.filteredCities = this.cities.filter(city=>city.country===data.Country);
+      //     steps.filter(step => step.id === stepId)
+         }
+       }
+      }
+    ) 
+  }
+  searchForm=new FormGroup({
+    CheckIn: new FormControl('', Validators.required),
+    CheckOut:new FormControl('', Validators.required),
+    NoOfAdultGuests:new FormControl('', Validators.required),
+    NoOfChildGuests:new FormControl('', Validators.required),
+    Country:new FormControl('', Validators.required),
+    City:new FormControl('', Validators.required)
+
+  })
+  currentDate = new Date();
+  const  = formatDate(this.currentDate, 'yyyy-MM-dd', 'en-US');
+  get Country() {
+    return this.searchForm.get('Country.name');
+  }
+  get City() {
+    return this.searchForm.get('City.name');
+  }
+save(){
+
+}
 }

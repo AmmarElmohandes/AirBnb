@@ -10,7 +10,7 @@ export const initialState = 0;
 const _hostReducer = createReducer(
   initialState,
   on(setId, (state,{hostId}) =>state=hostId),
-  on(resetId, (state) => 0)
+  on(resetId, (state,{hostId}) =>hostId= 0)
 );
 
 export function HostReducer(state:any, action:any) {

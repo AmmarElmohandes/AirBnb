@@ -4,6 +4,9 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { map } from 'rxjs/operators';
 import { HttpErrorResponse } from '@angular/common/http';
+import { Store } from '@ngrx/store';
+import { AppState } from 'src/app/State/app.state';
+import { Observable, Subscription } from 'rxjs';
 // import { error } from 'console';
 @Component({
   selector: 'register',
@@ -11,8 +14,10 @@ import { HttpErrorResponse } from '@angular/common/http';
   styleUrls: ['./register.component.css'],
 })
 export class RegisterComponent implements OnInit {
-  constructor(private router: Router, private service: RegisterService) {}
+  constructor(private router: Router, private service: RegisterService,private store:Store<AppState>) {this.hostoruser=store.select('hostOruser')}
 error:string=""
+hostoruser:Observable<number>
+flag:number=0
   ngOnInit() {}
   form = new FormGroup({
     FirstName: new FormControl('', Validators.required),
@@ -58,9 +63,21 @@ error:string=""
   }
 
   register() {
+    let currentPageSub :Subscription;
+
+    currentPageSub = this.hostoruser.subscribe(
+  (hostOruser: number) => {
+      this.flag=hostOruser;
+      //console.log(propertyId)
+      //console.log(this.photo.PropertyId)
+  }
+ );
     let user = this.form.value;
     console.log(user);
-    this.service.registerNewUser(user,1).subscribe(a=>console.log(a),err=>this.error=err.error
+    this.service.registerNewUser(user,this.flag).subscribe(a=>{console.log(a);
+        this.router.navigate(['login']);
+         
+    },err=>this.error=err.error
  
     )
     
