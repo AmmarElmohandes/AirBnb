@@ -86,7 +86,7 @@ namespace AirBnbWebApi.Controllers
             var pathToSave = Path.Combine(Directory.GetCurrentDirectory(), folderName);
             var fullPath = Path.Combine(pathToSave, photos.ImageName);
             var dbPath = Path.Combine(folderName, photos.ImageName);
-            photos.ImageName = fullPath;
+            
             _context.Photos.Add(photos);
             await _context.SaveChangesAsync();
 
@@ -112,7 +112,7 @@ namespace AirBnbWebApi.Controllers
         public IActionResult Upload()
         {
             try
-            {
+            { 
                 var file = Request.Form.Files[0];
                 var folderName = Path.Combine("Resources", "Images");
                 var pathToSave = Path.Combine(Directory.GetCurrentDirectory(), folderName);
