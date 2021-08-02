@@ -28,6 +28,7 @@ namespace AirBnbWebApi.Controllers
         {
             return await _context.properties.ToListAsync();
         }
+      
 
         // GET: api/Properties/5
         [HttpGet("{id}")]
@@ -130,7 +131,7 @@ namespace AirBnbWebApi.Controllers
             List<Property> ReturnedProperty = new List<Property>();
             //Search select 
             //  var AllProperties = await _context.properties.Where(a => a.AvailableStartDate <= userSearch.CheckIn && a.AvailableEndDate >= userSearch.CheckOut &&!a.Reservations.Any(a=>(a.CheckIn<=userSearch.CheckIn&&a.CheckOut>=userSearch.CheckIn)||(a.CheckIn<=userSearch.CheckOut&&a.CheckOut>=userSearch.CheckIn))&&a.Guests.Any(c=>c.NoOfAdultGuests>=userSearch.NoOfAdultGuests&&c.NoOfChildGuests>=userSearch.NoOfChildGuests)).ToListAsync<Property>();
-              var AllProperties = await _context.properties.Where(a => a.AvailableStartDate <= userSearch.CheckIn && a.AvailableEndDate >= userSearch.CheckOut 
+              var AllProperties = await _context.properties.Where(a => a.AvailableStartDate <= userSearch.CheckIn && a.AvailableEndDate >= userSearch.CheckOut &&a.City==userSearch.City &&a.Country==userSearch.Country
               &&(a.Guests.Any(c=>c.NoOfAdultGuests>=userSearch.NoOfAdultGuests&&c.NoOfChildGuests>=userSearch.NoOfChildGuests)
               &&!a.Reservations.Any(a => (a.CheckIn <= userSearch.CheckIn && a.CheckOut >= userSearch.CheckIn) || (a.CheckIn <= userSearch.CheckOut && a.CheckOut >= userSearch.CheckIn))
               )).ToListAsync<Property>();
