@@ -1,14 +1,3 @@
-
-<!-- <button
-  *ngIf="authService.isLoggedIn()"
-  routerLink=" "
-  class="btn btn-danger"
-  (click)="authService.logout()"
->
-  Logout
-</button> -->
-<!-- <button routerLink="/register" class="btn btn success">register</button> --> -->
-
 <body>
   <nav
     class="navbar navbar-dark navbar-expand-lg fixed-top bg-dark"
@@ -43,17 +32,21 @@
           </li>
           <li class="nav-item">
             <a
-              *ngIf="!authService.isLoggedIn() "
+              *ngIf="!authService.isLoggedIn()"
               routerLink="/register"
               class="nav-link js-scroll-trigger"
               (click)="authService.setFlag(1)"
-              
               href=""
               >Become a Host</a
             >
           </li>
           <li class="nav-item">
-            <a routerLink="/register" *ngIf="!authService.isLoggedIn()" (click)="authService.setFlag(2)" class="nav-link js-scroll-trigger" href=""
+            <a
+              routerLink="/register"
+              *ngIf="!authService.isLoggedIn()"
+              (click)="authService.setFlag(2)"
+              class="nav-link js-scroll-trigger"
+              href=""
               >Register</a
             >
           </li>
@@ -123,28 +116,44 @@
                   <label for="">Check Out:</label>
                   <input type="date" class="text-input"  min="{{const}}" formControlName="CheckOut" />
                 </div>
-              </div>
-              <div class="col-sm-12 col-md-12 col-lg-2">
-                <div class="inputwithicon">
+                <div class="col-sm-12 col-md-12 col-lg-2">
+                  <div class="inputwithicon">
                     <label>Country :</label>
-                 
+
                     <select class="text-input" formControlName="Country">
-                        <option *ngFor="let country of countries" [ngValue]="country.name">{{country?.name}}</option>
+                      <option
+                        *ngFor="let country of countries"
+                        [ngValue]="country.name"
+                      >
+                        {{ country?.name }}
+                      </option>
                     </select>
-                         <div *ngIf="Country?.touched && Country?.pristine" class="alert alert-danger">
-                            Country is Required.
+                    <div
+                      *ngIf="Country?.touched && Country?.pristine"
+                      class="alert alert-danger"
+                    >
+                      Country is Required.
+                    </div>
+                  </div>
                 </div>
-                </div>
-              </div>
-              <div class="col-sm-12 col-md-12 col-lg-2">
-                <div class="inputwithicon">
+                <div class="col-sm-12 col-md-12 col-lg-2">
+                  <div class="inputwithicon">
                     <label>City :</label>
                     <select class="text-input" formControlName="City">
-                        <option *ngFor="let city of filteredCities"  [ngValue]="city.name">{{city?.name}}</option>
-                          </select>
-                     <div *ngIf="City?.touched && City?.pristine" class="alert alert-danger">
-                        City is Required.
-                     </div>
+                      <option
+                        *ngFor="let city of filteredCities"
+                        [ngValue]="city.name"
+                      >
+                        {{ city?.name }}
+                      </option>
+                    </select>
+                    <div
+                      *ngIf="City?.touched && City?.pristine"
+                      class="alert alert-danger"
+                    >
+                      City is Required.
+                    </div>
+                  </div>
                 </div>
               </div>
               <div class="col-sm-12 col-md-12 col-lg-2">
@@ -159,9 +168,7 @@
                   <input value="0" type="number" class="text-input" formControlName="NoOfChildGuests"/>
                 </div>
               </div>
-            </div>
-        </form>
-
+            </form>
           </div>
           <div id="features-div"></div>
           <div class="row" id="buttons-div">
@@ -484,4 +491,3 @@
   <script src="assets/js/jquery.easing.min.js"></script>
   <script src="assets/js/agency.js"></script>
 </body>
-
