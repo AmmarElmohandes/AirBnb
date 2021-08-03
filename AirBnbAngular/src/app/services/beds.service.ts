@@ -12,4 +12,7 @@ Bed(beds:any){
     return this.http.post("http://localhost:9095/api/Beds",beds)
     
   }
+  bedSearch(id:any){
+    return this.http.get("http://localhost:9095/api/Beds/"+id)
+  }
 }

@@ -38,7 +38,7 @@ namespace AirBnbWebApi.Models
         public string PhoneNumber { get; set; }
         [Required]
         public DateTime BirthDate { get; set; }
-        [Range(18, 100)]
+      
         public int Age { get { return int.Parse((DateTime.Now.Year - BirthDate.Year).ToString()); }set {value= int.Parse((DateTime.Now.Year - BirthDate.Year).ToString()); } }
 
         public string Gender { get; set; }

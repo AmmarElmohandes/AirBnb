@@ -31,7 +31,7 @@ namespace AirBnbWebApi.Controllers
         [HttpGet("{id}")]
         public async Task<ActionResult<Beds>> GetBeds(int id)
         {
-            var beds = await _context.Beds.FindAsync(id);
+            var beds = await _context.Beds.FirstOrDefaultAsync(a=>a.PropertyId==id);
 
             if (beds == null)
             {
@@ -40,6 +40,7 @@ namespace AirBnbWebApi.Controllers
 
             return beds;
         }
+      
 
         // PUT: api/Beds/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
@@ -78,6 +79,7 @@ namespace AirBnbWebApi.Controllers
         public async Task<ActionResult<Beds>> PostBeds(Beds beds)
         {
             _context.Beds.Add(beds);
+            _context.properties.Find(beds.PropertyId).Beds = beds;            
             await _context.SaveChangesAsync();
 
             return CreatedAtAction("GetBeds", new { id = beds.id }, beds);

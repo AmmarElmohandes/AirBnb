@@ -1,4 +1,4 @@
 import { createAction, props } from '@ngrx/store';
+import { Property } from '../Models/property';
 
-export const setPropertyId = createAction('[Property Component] setPropertyId ',props<{propertyId:number}>());
-export const resetId = createAction('[Property Component] resetId');
+export const setProperty = createAction('[Reservation Component] setProperty ',props<{property:Property}>());

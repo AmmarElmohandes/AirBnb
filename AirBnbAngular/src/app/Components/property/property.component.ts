@@ -7,7 +7,7 @@ import { Store } from '@ngrx/store';
 import { Observable, Subscription } from 'rxjs';
 import { AppState } from 'src/app/State/app.state';
 import { setId } from 'src/app/Actions/hosts.action';
-import { setPropertyId } from 'src/app/Actions/property.action';
+import { setPropertyId } from 'src/app/Actions/propertyId.action';
 import { formatDate } from '@angular/common';
 @Component({
   selector: 'app-property',
@@ -24,7 +24,9 @@ export class PropertyComponent implements OnInit {
  hostId2:number=0
   property=new Property(0,"","","","","","","",new Date,new Date,0,0);
   ngOnInit(): void {
-    this.countries = [{
+    this.countries =
+  [
+    {
       "name": "India",
       "code": "IN"
     },
@@ -34,7 +36,24 @@ export class PropertyComponent implements OnInit {
     },{
       "name":"Egypt",
       "code":"Eg"
-    }
+    },
+    {
+      "name":"France",
+      "code":"Fr"
+    },
+    {
+      "name":"USA",
+      "code":"US"
+    },
+    {
+      "name":"Germany",
+      "code":"Gr"
+    },
+    {
+      "name":"Indonesia",
+      "code":"In"
+    },
+
   ];
 this.cities = [{
       "name": "Mumbai",
@@ -60,15 +79,43 @@ this.cities = [{
       "name":"Alexandria",
       "country":"Egypt",
       "Code":"Eg"
-
+    },
+    {
+      "name":"Cairo",
+      "country":"Egypt",
+      "Code":"Eg"
+    },
+    {
+      "name":"Paris",
+      "country":"France",
+      "Code":"Fr"
+    },
+    {
+      "name":"New York",
+      "country":"USA",
+      "Code":"US"
+    },
+    {
+      "name":"Los Angeles",
+      "country":"USA",
+      "Code":"US"
+    },
+    {
+      "name":"Berlin",
+      "country":"Germany",
+      "Code":"Gr"
+    },
+    {
+      "name":"Bali",
+      "country":"Indonesia",
+      "Code":"In"
     }
-  
   ];
     this.areas=[
       "Private Room",
        "sharedRoom"
-    
-  
+
+
   ];
   this.propertyTypes=
   ["Hotel Room",
@@ -107,7 +154,7 @@ this.cities = [{
 
 
   });
-  
+
 
   get Title() {
     return this.form.get('Title');
@@ -144,7 +191,7 @@ this.cities = [{
   // }
   save()
   {
-  
+
     this.error=""
     this.property = this.form.value;
 
@@ -157,11 +204,11 @@ this.cities = [{
      console.log(this.property.HostId)
  }
 );
-    
-  
+
+
     console.log(this.property);
     this.service.postproperty(this.property).subscribe((a:any)=>{console.log(a);this.store.dispatch(setPropertyId({propertyId:a.id})); this.success="successfully added";this.submitted=false},err=>this.error=err.error)
-  
+
   }
 
 }

@@ -34,13 +34,16 @@ namespace AirBnbWebApi.Models
         [ForeignKey("host")]
         [Required]
         public int HostId { get; set; }
-
+        [NotMapped]
+        public string imageName{ get; set; }
 
         public virtual Host? host { get; set; }
         public virtual List<Reservation>? Reservations { get; set; }
-        public virtual List<Beds>? Beds { get; set; }
+        //public virtual List<Beds>? Beds { get; set; }
+        public virtual Beds Beds { get; set; }
         public virtual List<Photos>? Photos { get; set; }
         public virtual List<Guests>? Guests { get; set; }
+        //public virtual Guests Guests { get; set; }
 
     }
 }

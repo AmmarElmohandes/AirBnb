@@ -126,7 +126,7 @@ namespace AirBnbWebApi.Controllers
             var user = await _context.users.FirstOrDefaultAsync(a => a.Email == userForAuthentication.Email && a.Password == userForAuthentication.Password);
 
             if (user == null)
-                return Unauthorized(new AuthResponse { ErrorMessage = "Invalid Authentication" });
+                return Unauthorized(new AuthResponse { ErrorMessage = "Invalid email or password" });
 
             var signingCredentials = _jwtHandler.GetSigningCredentials();
             var claims = _jwtHandler.GetClaims(user);

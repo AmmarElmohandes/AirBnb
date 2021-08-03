@@ -7,4 +7,7 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'AirBnbClone';
+ // title = 'My first AGM project';
+  lat = 51.678418;
+  lng = 7.809007;
 }

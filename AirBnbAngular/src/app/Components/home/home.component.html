@@ -51,15 +51,18 @@
             >
           </li>
           <li class="nav-item">
-            <a
-              routerLink="/"
-              *ngIf="authService.isLoggedIn()"
-              (click)="authService.logout()"
-              class="nav-link js-scroll-trigger"
-              href=""
+            <a routerLink="/property" *ngIf="authService.checkHost()"  class="nav-link js-scroll-trigger" href=""
+              >Add Property</a
+            >
+            
+          </li>
+          <li class="nav-item">
+            <a routerLink="/" *ngIf="authService.isLoggedIn()" (click)="authService.logout()" class="nav-link js-scroll-trigger" href=""
               >Log Out</a
             >
+            
           </li>
+          
         </ul>
       </div>
     </div>
@@ -100,19 +103,18 @@
             <div><span>Find Your Place</span></div>
           </div>
           <div id="basic-div">
-            <form [formGroup]="searchForm" (ngSubmit)="save()">
-              <div class="row no-gutters">
-                <div class="col-sm-12 col-md-12 col-lg-2">
-                  <div class="inputwithicon">
-                    <label for="">Check In:</label>
-                    <input type="date" class="text-input" min="{{ const }}" />
-                  </div>
+            <form [formGroup]='searchForm' (ngSubmit)='save()'>
+            <div class="row no-gutters">
+              <div class="col-sm-12 col-md-12 col-lg-2">
+                <div class="inputwithicon">
+                  <label for="">Check In:</label>
+                  <input type="date" class="text-input" min={{const}} formControlName="CheckIn"/>
                 </div>
-                <div class="col-sm-12 col-md-12 col-lg-2">
-                  <div class="inputwithicon">
-                    <label for="">Check Out:</label>
-                    <input type="date" class="text-input" min="{{ const }}" />
-                  </div>
+              </div>
+              <div class="col-sm-12 col-md-12 col-lg-2">
+                <div class="inputwithicon">
+                  <label for="">Check Out:</label>
+                  <input type="date" class="text-input"  min="{{const}}" formControlName="CheckOut" />
                 </div>
                 <div class="col-sm-12 col-md-12 col-lg-2">
                   <div class="inputwithicon">
@@ -153,17 +155,17 @@
                     </div>
                   </div>
                 </div>
-                <div class="col-sm-12 col-md-12 col-lg-2">
-                  <div class="inputwithicon">
-                    <label for="">Adults:</label>
-                    <input value="0" type="number" class="text-input" />
-                  </div>
+              </div>
+              <div class="col-sm-12 col-md-12 col-lg-2">
+                <div class="inputwithicon">
+                  <label for="">Adults:</label>
+                  <input value="0" type="number" class="text-input" formControlName="NoOfAdultGuests"/>
                 </div>
-                <div class="col-sm-12 col-md-12 col-lg-2">
-                  <div class="inputwithicon">
-                    <label for="">Children:</label>
-                    <input value="0" type="number" class="text-input" />
-                  </div>
+              </div>
+              <div class="col-sm-12 col-md-12 col-lg-2">
+                <div class="inputwithicon">
+                  <label for="">Children:</label>
+                  <input value="0" type="number" class="text-input" formControlName="NoOfChildGuests"/>
                 </div>
               </div>
             </form>
@@ -173,7 +175,7 @@
             <div class="col-lg-6 col-xl-6 mx-auto">
               <div id="search-btn" class="searchlink">
                 <i class="fas fa-search" style="margin-left: 5px"></i
-                ><a href="#">Search</a>
+                ><a  (click)="save()">Search</a>
               </div>
             </div>
           </div>
