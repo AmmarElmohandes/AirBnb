@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { Observable, Subscription } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { setPropertyId } from 'src/app/Actions/property.action';
+import { setPropertyId } from 'src/app/Actions/propertyId.action';
 import { Guest } from 'src/app/Models/guest';
 import { GuestService } from 'src/app/services/guest.service';
 import { AppState } from 'src/app/State/app.state';

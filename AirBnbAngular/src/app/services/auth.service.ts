@@ -7,7 +7,8 @@ import { AppState } from '../State/app.state';
 import { Observable, Subscription } from 'rxjs';
 import { sethostOruser } from '../Actions/hostOruser.action';
 import { setId } from '../Actions/hosts.action';
-import { setPropertyId } from '../Actions/property.action';
+import { setPropertyId } from '../Actions/propertyId.action';
+import { setUserId } from '../Actions/user.action';
 
 @Injectable({
   providedIn: 'root'
@@ -60,12 +61,27 @@ flag:number=0
     this.store.dispatch(setId({hostId:0}))
     this.store.dispatch(sethostOruser({hostOruser:0}))
     this.store.dispatch(setPropertyId({propertyId:0}))
+    this.store.dispatch(setUserId({userId:0}))
 
     }else{
       this.store.dispatch(sethostOruser({hostOruser:0}))
 
     }
 
+  }
+  checkHost(){
+    let currentPageSub :Subscription;
+
+    currentPageSub = this.hostOruser.subscribe(
+  (hostOruser: number) => {
+      this.flag=hostOruser;
+    
+  }
+
+ );
+ if(this.flag==1){
+  return true;
+}else return false
   }
   setFlag(num:number){
     this.store.dispatch(sethostOruser({hostOruser:num}))

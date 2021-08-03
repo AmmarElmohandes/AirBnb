@@ -7,7 +7,7 @@ import { Store } from '@ngrx/store';
 import { Observable, Subscription } from 'rxjs';
 import { AppState } from 'src/app/State/app.state';
 import { setId } from 'src/app/Actions/hosts.action';
-import { setPropertyId } from 'src/app/Actions/property.action';
+import { setPropertyId } from 'src/app/Actions/propertyId.action';
 import { formatDate } from '@angular/common';
 @Component({
   selector: 'app-property',
@@ -52,7 +52,7 @@ export class PropertyComponent implements OnInit {
     {
       "name":"Indonesia",
       "code":"In"
-    }
+    },
 
   ];
 this.cities = [{

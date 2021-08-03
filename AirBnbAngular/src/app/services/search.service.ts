@@ -5,16 +5,15 @@ import { map } from 'rxjs/operators';
 @Injectable({
   providedIn: 'root'
 })
-export class PhotosService {
+export class SearchService {
 
   constructor(private http:HttpClient) { }
 
-  getphotos(id:any){
-    return this.http.get("http://localhost:9095/api/photos/"+id).pipe(map((response:any)=>{
-let result=response;
-return result.$values
-    })
-    )
+  search(searchData:any){
+  return  this.http.post("http://localhost:9095/api/properties/search",searchData).pipe(map((response:any)=>{
+    let result=response;
+    return result.$values
     
-  }
+  }))
+}
 }

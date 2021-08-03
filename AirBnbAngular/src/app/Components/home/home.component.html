@@ -58,10 +58,18 @@
             >
           </li>
           <li class="nav-item">
+            <a routerLink="/property" *ngIf="authService.checkHost()"  class="nav-link js-scroll-trigger" href=""
+              >Add Property</a
+            >
+            
+          </li>
+          <li class="nav-item">
             <a routerLink="/" *ngIf="authService.isLoggedIn()" (click)="authService.logout()" class="nav-link js-scroll-trigger" href=""
               >Log Out</a
             >
+            
           </li>
+          
         </ul>
       </div>
     </div>
@@ -107,13 +115,13 @@
               <div class="col-sm-12 col-md-12 col-lg-2">
                 <div class="inputwithicon">
                   <label for="">Check In:</label>
-                  <input type="date" class="text-input" min={{const}}/>
+                  <input type="date" class="text-input" min={{const}} formControlName="CheckIn"/>
                 </div>
               </div>
               <div class="col-sm-12 col-md-12 col-lg-2">
                 <div class="inputwithicon">
                   <label for="">Check Out:</label>
-                  <input type="date" class="text-input"  min="{{const}}" />
+                  <input type="date" class="text-input"  min="{{const}}" formControlName="CheckOut" />
                 </div>
               </div>
               <div class="col-sm-12 col-md-12 col-lg-2">
@@ -142,13 +150,13 @@
               <div class="col-sm-12 col-md-12 col-lg-2">
                 <div class="inputwithicon">
                   <label for="">Adults:</label>
-                  <input value="0" type="number" class="text-input" />
+                  <input value="0" type="number" class="text-input" formControlName="NoOfAdultGuests"/>
                 </div>
               </div>
               <div class="col-sm-12 col-md-12 col-lg-2">
                 <div class="inputwithicon">
                   <label for="">Children:</label>
-                  <input value="0" type="number" class="text-input" />
+                  <input value="0" type="number" class="text-input" formControlName="NoOfChildGuests"/>
                 </div>
               </div>
             </div>
@@ -160,7 +168,7 @@
             <div class="col-lg-6 col-xl-6 mx-auto">
               <div id="search-btn" class="searchlink">
                 <i class="fas fa-search" style="margin-left: 5px"></i
-                ><a href="#">Search</a>
+                ><a  (click)="save()">Search</a>
               </div>
             </div>
           </div>
