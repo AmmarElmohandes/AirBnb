@@ -1,77 +1,117 @@
-<div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
-    <div class="carousel-inner">
-      <div class="carousel-item active " *ngFor="let photo of photos let i=index" [ngClass]="{'active' : i == 0}">
-        <img class="d-block w-100" src={{photo.imageName}} alt="First slide">
-      
+<section
+  style="
+    background-image: url('assets/img/header-bg.jpg');
+    background-size: cover;
+  "
+  class="reserve"
+>
+  <div class="form-container">
+    <form>
+      <h2 class="text-center">
+        <strong>{{ property.title }}</strong>
+      </h2>
+      <p class="text-center">
+        Check some photos for your reservation before check out.
+      </p>
+      <div class="form-group">
+        <div
+          id="carouselExampleControls"
+          class="carousel slide"
+          data-ride="carousel"
+        >
+          <div class="carousel-inner">
+            <div
+              class="carousel-item active"
+              *ngFor="let photo of photos; let i = index"
+              [ngClass]="{ active: i == 0 }"
+            >
+              <img
+                style="width: 800px; height: 500px"
+                src="{{ photo.imageName }}"
+                alt=""
+              />
+            </div>
+          </div>
+          <a
+            class="carousel-control-prev"
+            href="#carouselExampleControls"
+            role="button"
+            data-slide="prev"
+          >
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+          </a>
+          <a
+            class="carousel-control-next"
+            href="#carouselExampleControls"
+            role="button"
+            data-slide="next"
+          >
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+          </a>
+        </div>
       </div>
-      
-    </div>
-    <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
-      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-      <span class="sr-only">Previous</span>
-    </a>
-    <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
-      <span class="carousel-control-next-icon" aria-hidden="true"></span>
-      <span class="sr-only">Next</span>
-    </a>
-  </div>
-<div class="card">
 
-    <div class="card-header">
-      {{property.title}}
-    </div>
-    <div class="card-body">
-   
-        <label>Address :</label>
-      <p class="card-text">{{property.propertyAddress}}</p>
-        <label>Description :</label>
-      <p class="card-text">{{property.propertyDescription}}</p>
       <div class="row">
-          <div class="col-lg-6">
-            <label>Country :</label>
-            <p class="card-text">{{property.country}}</p>
-          </div>
-          <div class="col-lg-6">
-            <label>City :</label>
-            <p class="card-text">{{property.city}}</p>
-          </div>
+        <div class="form-group col">
+          <label>Address :</label>
+          <p class="card-text">{{ property.propertyAddress }}</p>
+        </div>
+        <div class="form-group col">
+          <label>Description :</label>
+          <p class="card-text">{{ property.propertyDescription }}</p>
+        </div>
       </div>
       <div class="row">
-        <div class="col-lg-6">
+        <div class="form-group col">
+          <label>Country :</label>
+          <p class="card-text">{{ property.country }}</p>
+        </div>
+        <div class="form-group col">
+          <label>City :</label>
+          <p class="card-text">{{ property.city }}</p>
+        </div>
+      </div>
+      <div class="row">
+        <div class="form-group col">
           <label>Property Type :</label>
-          <p class="card-text">{{property.propertyType}}</p>
+          <p class="card-text">{{ property.propertyType }}</p>
         </div>
-        <div class="col-lg-6">
+        <div class="form-group col">
           <label>Area Type :</label>
-          <p class="card-text">{{property.areaType}}</p>
+          <p class="card-text">{{ property.areaType }}</p>
         </div>
-    </div>
-    <div class="row">
-        <div class="col-lg-4">
-          <label>No of king beds :</label>
-          <p class="card-text">{{property.beds?.noOfKingbeds}}</p>
-        </div>
-        <div class="col-lg-4">
-          <label>No of Single Beds :</label>
-          <p class="card-text">{{property.beds?.noOfSinglebeds}}</p>
-        </div>
-        <div class="col-lg-4">
-            <label>No of Double Beds :</label>
-            <p class="card-text">{{property.beds?.noOfDoublebeds}}</p>
-          </div>
-    </div>
- 
-       
-       
-            <label>Price per night :</label>
-            <p class="card-text">{{property.pricePerNight}}</p>
-      <a (click)="checkOut()" class="btn btn-primary">CheckOut</a>
-      <div *ngIf="flag" >
-        <label>Total price :</label>
-        <p class="card-text">{{price}}</p>
-        <a (click)="navigate()" class="btn btn-primary">Finish</a>
-
       </div>
-    
+      <div class="row">
+        <div class="form-group col">
+          <label>King beds :</label>
+          <p class="card-text">{{ property.beds?.noOfKingbeds }}</p>
+        </div>
+        <div class="form-group col">
+          <label>Single Beds :</label>
+          <p class="card-text">{{ property.beds?.noOfSinglebeds }}</p>
+        </div>
+      </div>
+      <div class="row">
+        <div class="form-group col">
+          <label>Double Beds :</label>
+          <p class="card-text">{{ property.beds?.noOfDoublebeds }}</p>
+        </div>
+        <div class="form-group col">
+          <label>Price per night :</label>
+          <p class="card-text">{{ property.pricePerNight }}</p>
+        </div>
+      </div>
+      <div class="form-group">
+        <a (click)="checkOut()" class="btn btn-primary btn-block">Check Out</a>
+      </div>
+      <div *ngIf="flag" class="form-group">
+        <p style="font-size: large; font-weight: bold" class="text-center">
+          Total Price : {{ price }}$
+        </p>
+        <a (click)="navigate()" class="btn btn-success btn-block">Finish</a>
+      </div>
+    </form>
   </div>
-</div>
+</section>

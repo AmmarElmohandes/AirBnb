@@ -1,57 +1,77 @@
-<div *ngIf="error" class="alert alert-danger">
-    {{ error }}
-  </div>
-<div *ngFor="let property of properties" >
-    <div class="card">
-        <div class="card-header">
-          {{property.title}}
-        </div>
-        <div class="card-body">
-       
+<section
+  style="
+    background-image: url('assets/img/header-bg.jpg');
+    background-size: cover;
+  "
+  class="search"
+>
+  <div class="form-container">
+    <form>
+      <div *ngIf="error" class="alert alert-danger">
+        {{ error }}
+      </div>
+      <div *ngFor="let property of properties">
+        <h2 class="text-center">
+          <strong>{{ property.title }}</strong>
+        </h2>
+        <div class="row">
+          <div class="form-group col">
             <label>Address :</label>
-          <p class="card-text">{{property.propertyAddress}}</p>
-            <label>Description :</label>
-          <p class="card-text">{{property.propertyDescription}}</p>
-          <div class="row">
-              <div class="col-lg-6">
-                <label>Country :</label>
-                <p class="card-text">{{property.country}}</p>
-              </div>
-              <div class="col-lg-6">
-                <label>City :</label>
-                <p class="card-text">{{property.city}}</p>
-              </div>
+            <p>{{ property.propertyAddress }}</p>
           </div>
-          <div class="row">
-            <div class="col-lg-6">
-              <label>Property Type :</label>
-              <p class="card-text">{{property.propertyType}}</p>
-            </div>
-            <div class="col-lg-6">
-              <label>Area Type :</label>
-              <p class="card-text">{{property.areaType}}</p>
-            </div>
+          <div class="form-group col">
+            <label>Description :</label>
+            <p>{{ property.propertyDescription }}</p>
+          </div>
         </div>
         <div class="row">
-            <div class="col-lg-4">
-              <label>No of king beds :</label>
-              <p class="card-text">{{property.beds?.noOfKingbeds}}</p>
-            </div>
-            <div class="col-lg-4">
-              <label>No of Single Beds :</label>
-              <p class="card-text">{{property.beds?.noOfSinglebeds}}</p>
-            </div>
-            <div class="col-lg-4">
-                <label>No of Double Beds :</label>
-                <p class="card-text">{{property.beds?.noOfDoublebeds}}</p>
-              </div>
+          <div class="form-group col">
+            <label>Country :</label>
+            <p>{{ property.country }}</p>
+          </div>
+          <div class="form-group col">
+            <label>City :</label>
+            <p>{{ property.city }}</p>
+          </div>
         </div>
-        <label>Price per night :</label>
-        <p class="card-text">{{property.pricePerNight}}</p>
-      
-          <a (click)="reserve(property.id,property)" class="btn btn-primary">Reserve</a>
-        
+        <div class="row">
+          <div class="form-group col">
+            <label>Property Type :</label>
+            <p>{{ property.propertyType }}</p>
+          </div>
+          <div class="form-group col">
+            <label>Area Type :</label>
+            <p>{{ property.areaType }}</p>
+          </div>
+        </div>
+        <div class="row">
+          <div class="form-group col">
+            <label>King beds :</label>
+            <p>{{ property.beds?.noOfKingbeds }}</p>
+          </div>
+          <div class="form-group col">
+            <label>Single Beds :</label>
+            <p>{{ property.beds?.noOfSinglebeds }}</p>
+          </div>
+        </div>
+        <div class="row">
+          <div class="form-group col">
+            <label>Double Beds :</label>
+            <p>{{ property.beds?.noOfDoublebeds }}</p>
+          </div>
+          <div class="form-group col">
+            <label>Price per night :</label>
+            <p>{{ property.pricePerNight }}</p>
+          </div>
+        </div>
+        <div class="form-group">
+          <a
+            (click)="reserve(property.id, property)"
+            class="btn btn-primary btn-block"
+            >Reserve</a
+          >
+        </div>
       </div>
-    </div>
-   
-</div>
+    </form>
+  </div>
+</section>
