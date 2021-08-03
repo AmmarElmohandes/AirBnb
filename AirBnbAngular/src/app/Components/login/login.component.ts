@@ -6,6 +6,7 @@ import { Observable, Subscription } from 'rxjs';
 import { Store } from '@ngrx/store';
 import { setId } from 'src/app/Actions/hosts.action';
 import { AppState } from 'src/app/State/app.state';
+import { setUserId } from 'src/app/Actions/user.action';
 
 @Component({
   selector: 'app-login',
@@ -51,15 +52,17 @@ hostId:Observable<number>
       //console.log(result)
      console.log(this.flag)
        if(this.flag==1){
-      this.router.navigate(['property']);
+        this.store.dispatch(setId({hostId:result.id}))
+      this.router.navigate(['']);
        }else if(this.flag==2){
+        this.store.dispatch(setUserId({userId:result.id}))
         this.router.navigate(['']);
 
        }
       }
       this.invalidLogin = true;
       // let id:number=localStorage.getItem('hostId')
-     this.store.dispatch(setId({hostId:result.id}))
+   
     },err=>{this.error=err.error.errorMessage;console.log(err.error.errorMessage)});
 
   }

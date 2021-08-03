@@ -1,7 +1,7 @@
 export class Photos {
     constructor(
         public id:number,
-        public ImageName:string,
-        public PropertyId:number,
+        public imageName:string,
+        public propertyId:number,
     ){}
 }
