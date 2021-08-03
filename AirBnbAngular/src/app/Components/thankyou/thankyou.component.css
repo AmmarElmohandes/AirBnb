@@ -1,9 +1,9 @@
-.beds {
+.register {
   background: #f1f7fc;
   padding: 80px 0;
 }
 
-.beds .form-container {
+.register .form-container {
   display: table;
   max-width: 500px;
   width: 90%;
@@ -11,7 +11,7 @@
   box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
 }
 
-.beds form {
+.register form {
   display: table-cell;
   width: 400px;
   background-color: #ffffff;
@@ -20,18 +20,18 @@
 }
 
 @media (max-width: 991px) {
-  .beds form {
+  .register form {
     padding: 40px;
   }
 }
 
-.beds form h2 {
+.register form h2 {
   font-size: 24px;
   line-height: 1.5;
   margin-bottom: 30px;
 }
 
-.beds form .form-control {
+.register form .form-control {
   background: #f7f9fc;
   border: none;
   border-bottom: 1px solid #dfe7f1;
@@ -43,12 +43,12 @@
   height: 40px;
 }
 
-.beds form .form-check {
+.register form .form-check {
   font-size: 13px;
   line-height: 20px;
 }
 
-.beds form .btn-primary {
+.register form .btn-primary {
   background: #f4476b;
   border: none;
   border-radius: 4px;
@@ -59,21 +59,20 @@
   outline: none !important;
 }
 
-.beds form .btn-primary:hover,
-.beds form .btn-primary:active {
+.register form .btn-primary:hover,
+.register form .btn-primary:active {
   background: #eb3b60;
 }
 
-.beds form .btn-primary:active {
+.register form .btn-primary:active {
   transform: translateY(1px);
 }
 
-.beds form .btn-success {
-  border: none;
-  border-radius: 4px;
-  padding: 11px;
-  box-shadow: none;
-  margin-top: 35px;
-  text-shadow: none;
-  outline: none !important;
+.register form .already {
+  display: block;
+  text-align: center;
+  font-size: 12px;
+  color: #6f7a85;
+  opacity: 0.9;
+  text-decoration: none;
 }

@@ -18,6 +18,7 @@ import { HostReducer } from './reducers/hosts.reducer';
 import { PhotosComponent } from './Components/photos/photos.component';
 import { SearchComponent } from './Components/search/search.component';
 import { ReservationComponent } from './Components/reservation/reservation.component';
+import { ThankyouComponent } from './Components/thankyou/thankyou.component';
 // import { AgmCoreModule } from '@agm/core';
 // import { GoogleMapsModule } from '@angular/google-maps';
 
@@ -34,6 +35,7 @@ import { ReservationComponent } from './Components/reservation/reservation.compo
     PhotosComponent,
     SearchComponent,
     ReservationComponent,
+    ThankyouComponent,
   ],
   imports: [
     HttpClientModule,
