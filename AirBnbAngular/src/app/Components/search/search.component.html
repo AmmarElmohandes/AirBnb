@@ -1,70 +1,42 @@
 <section
-  style="
-    background-image: url('assets/img/header-bg.jpg');
-    background-size: cover;
-  "
+
   class="search"
 >
-  <div class="form-container">
-    <form>
-      <div *ngIf="error" class="alert alert-danger">
-        {{ error }}
-      </div>
-      <div *ngFor="let property of properties">
-        <h2 class="text-center">
-          <strong>{{ property.title }}</strong>
-        </h2>
-        <div class="row">
-          <div class="form-group col">
+<div class="form-container">
+   
+
+        <app-searchbar></app-searchbar>
+        <div *ngIf="error" class="alert alert-danger">
+            {{ error }}
+          </div>
+      <div *ngFor="let property of properties" class="loop">
+        
+            <form>
+            
+             
+        <div class="card ">
+            <div class="card-body">
+                <h2 class="card-title">{{property.title}}</h2>
+      
             <label>Address :</label>
-            <p>{{ property.propertyAddress }}</p>
-          </div>
-          <div class="form-group col">
-            <label>Description :</label>
-            <p>{{ property.propertyDescription }}</p>
-          </div>
-        </div>
-        <div class="row">
-          <div class="form-group col">
-            <label>Country :</label>
-            <p>{{ property.country }}</p>
-          </div>
-          <div class="form-group col">
-            <label>City :</label>
-            <p>{{ property.city }}</p>
-          </div>
-        </div>
-        <div class="row">
-          <div class="form-group col">
-            <label>Property Type :</label>
-            <p>{{ property.propertyType }}</p>
-          </div>
-          <div class="form-group col">
-            <label>Area Type :</label>
-            <p>{{ property.areaType }}</p>
-          </div>
-        </div>
-        <div class="row">
-          <div class="form-group col">
-            <label>King beds :</label>
-            <p>{{ property.beds?.noOfKingbeds }}</p>
-          </div>
-          <div class="form-group col">
-            <label>Single Beds :</label>
-            <p>{{ property.beds?.noOfSinglebeds }}</p>
-          </div>
-        </div>
-        <div class="row">
-          <div class="form-group col">
-            <label>Double Beds :</label>
-            <p>{{ property.beds?.noOfDoublebeds }}</p>
-          </div>
-          <div class="form-group col">
-            <label>Price per night :</label>
-            <p>{{ property.pricePerNight }}</p>
-          </div>
-        </div>
-        <div class="form-group">
+            <p> {{ property.propertyAddress }}</p>
+            <p class="text-muted">{{property.city}},{{ property.country }}</p>
+            <label>Price per night:</label>
+            <p> EGP {{ property.pricePerNight }}</p>
+            <div class="row">
+                <div class="form-group col">
+                <label>propertyType:</label>
+                  <p>{{ property.propertyType }}</p>
+                </div>
+                <div class="form-group col">
+                  <label>Area Type :</label>
+                  <p>{{ property.areaType }}</p>
+                </div>
+              </div>
+              <label>Description :</label>
+              <p>{{ property.propertyDescription }}</p>
+
+        <div class="">
           <a
             (click)="reserve(property.id, property)"
             class="btn btn-primary btn-block"
@@ -72,6 +44,11 @@
           >
         </div>
       </div>
-    </form>
+    </div>
+</form>
+
+      </div>
+    
+    
   </div>
 </section>
