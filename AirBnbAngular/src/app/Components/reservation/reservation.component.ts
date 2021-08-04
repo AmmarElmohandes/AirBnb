@@ -75,7 +75,7 @@ this.reservation.userId=this.userId
 
   }
   navigate(){
-    this.router.navigate([''])
+    this.router.navigate(['thanks'])
   }
 
 

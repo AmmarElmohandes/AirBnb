@@ -19,6 +19,10 @@ import { PhotosComponent } from './Components/photos/photos.component';
 import { SearchComponent } from './Components/search/search.component';
 import { ReservationComponent } from './Components/reservation/reservation.component';
 import { ThankyouComponent } from './Components/thankyou/thankyou.component';
+import { NavbarComponent } from './Components/navbar/navbar.component';
+import { SearchbarComponent } from './Components/searchbar/searchbar.component';
+import { GoogleMap, GoogleMapsModule } from '@angular/google-maps';
+import { GooglemapComponent } from './Components/googlemap/googlemap.component';
 // import { AgmCoreModule } from '@agm/core';
 // import { GoogleMapsModule } from '@angular/google-maps';
 
@@ -36,12 +40,16 @@ import { ThankyouComponent } from './Components/thankyou/thankyou.component';
     SearchComponent,
     ReservationComponent,
     ThankyouComponent,
+    NavbarComponent,
+    SearchbarComponent,
+    GooglemapComponent
   ],
   imports: [
     HttpClientModule,
     ReactiveFormsModule,
     FormsModule,
     BrowserModule,
+    GoogleMapsModule,
     RouterModule.forRoot([
       { path: '', component: HomeComponent },
       { path: 'register', component: RegisterComponent },
@@ -52,6 +60,7 @@ import { ThankyouComponent } from './Components/thankyou/thankyou.component';
       { path: 'photos', component:PhotosComponent},
       {path:'search',component:SearchComponent},
       {path:'reserve',component:ReservationComponent},
+      {path:'thanks',component:ThankyouComponent},
       { path: '**', component: NotFoundComponent },
     ]),
    

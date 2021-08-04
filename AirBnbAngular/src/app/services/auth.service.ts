@@ -9,13 +9,14 @@ import { sethostOruser } from '../Actions/hostOruser.action';
 import { setId } from '../Actions/hosts.action';
 import { setPropertyId } from '../Actions/propertyId.action';
 import { setUserId } from '../Actions/user.action';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
   // private url = ;
-  constructor(private http:HttpClient,private store:Store<AppState>) {this.hostOruser=store.select('hostOruser') }
+  constructor(private http:HttpClient,private store:Store<AppState>,private router:Router) {this.hostOruser=store.select('hostOruser') }
   hostOruser:Observable<number>
   logIn(credentials:any,hostOruser:number){
     if(hostOruser==1){
@@ -67,7 +68,7 @@ flag:number=0
       this.store.dispatch(sethostOruser({hostOruser:0}))
 
     }
-
+this.router.navigate([''])
   }
   checkHost(){
     let currentPageSub :Subscription;

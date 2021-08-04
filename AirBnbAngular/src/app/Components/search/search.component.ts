@@ -23,7 +23,7 @@ properties:Array<Property>=[]
 hostoruser:number=0
 beds:Array<Beds>=[]
 error:string=""
-
+search=new Search()
 userId:number=0
 
   ngOnInit(): void {
@@ -35,6 +35,12 @@ userId:number=0
      console.log(this.properties)
  }
 );
+currentPageSub = this.store.select('search').subscribe(
+  (props: Search) => {
+      this.search=props;   
+      
+  }
+ );
 
   }
   reserve(id:any,prop:any){
