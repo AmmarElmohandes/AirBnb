@@ -36,9 +36,9 @@
           <select class="form-control" formControlName="propertyType">
             <option
               *ngFor="let propertyType of propertyTypes"
-              [ngValue]="propertyType"
+              [ngValue]="propertyType.name"
             >
-              {{ propertyType }}
+              {{ propertyType.name }}
             </option>
           </select>
           <div
@@ -58,8 +58,8 @@
         <div class="form-group col">
           <label>Area Type</label>
           <select class="form-control" formControlName="AreaType">
-            <option *ngFor="let area of areas" [ngValue]="area">
-              {{ area }}
+            <option *ngFor="let area of filteredAreas" [ngValue]="area.name">
+              {{ area.name }}
             </option>
           </select>
 
@@ -113,7 +113,7 @@
 
       <div class="row">
         <div class="form-group col">
-          <label for="">Check In:</label>
+          <label for="">Available from:</label>
           <input
             formControlName="AvailableStartDate"
             class="form-control"
@@ -130,7 +130,7 @@
           </div>
         </div>
         <div class="form-group col">
-          <label for="">Check Out:</label>
+          <label for="">Available to:</label>
           <input
             formControlName="AvailableEndDate"
             class="form-control"
@@ -150,22 +150,7 @@
 
       <div class="row">
         <div class="form-group col">
-          <input
-            formControlName="PropertyAddress"
-            class="form-control"
-            type="text"
-            name="PropertyAddress"
-            placeholder="PropertyAddress"
-          />
-          <div
-            *ngIf="PropertyAddress?.touched && PropertyAddress?.pristine"
-            class="alert alert-danger"
-          >
-            PropertyAddress is Required.
-          </div>
-        </div>
-        <div class="form-group col">
-          <input
+            <input
             formControlName="PropertyDescription"
             class="form-control"
             type="text"
@@ -181,22 +166,40 @@
             PropertyDescription is Required.
           </div>
         </div>
+        <div class="form-group col">
+            <input
+            formControlName="PricePerNight"
+            class="form-control"
+            type="number"
+            name="PricePerNight"
+            placeholder="PricePerNight"
+          />
+          <div
+            *ngIf="PricePerNight?.touched && PricePerNight?.invalid"
+            class="alert alert-danger"
+          >
+            PricePerNight is Required.
+          </div>
       </div>
-
-      <div class="form-group">
-        <input
-          formControlName="PricePerNight"
-          class="form-control"
-          type="number"
-          name="PricePerNight"
-          placeholder="PricePerNight"
-        />
-        <div
-          *ngIf="PricePerNight?.touched && PricePerNight?.invalid"
-          class="alert alert-danger"
-        >
-          PricePerNight is Required.
+ 
+         
         </div>
+      
+      <div class="form-group">
+       <!-- <input
+            formControlName="PropertyAddress"
+            class="form-control"
+            type="text"
+            name="PropertyAddress"
+            placeholder="PropertyAddress"
+          /> -->
+          <app-googlemap (location)="setLocation($event)"></app-googlemap>
+          <!-- <div
+            *ngIf="PropertyAddress?.touched && PropertyAddress?.pristine"
+            class="alert alert-danger"
+          >
+            PropertyAddress is Required.
+          </div> -->
       </div>
 
       <div class="form-group">
@@ -211,7 +214,7 @@
           Next
         </button>
       </div>
-      <!-- <app-googlemap></app-googlemap> -->
+      
     </form>
   </div>
 </section>

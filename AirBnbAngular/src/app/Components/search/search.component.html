@@ -1,54 +1,57 @@
-<section
 
-  class="search"
->
-<div class="form-container">
+
+<section class="search">
+    <app-searchbar></app-searchbar>
+    <div *ngIf="error" class="alert alert-danger">
+      {{ error }}
+    </div>
    
-
-        <app-searchbar></app-searchbar>
-        <div *ngIf="error" class="alert alert-danger">
-            {{ error }}
-          </div>
-      <div *ngFor="let property of properties" class="loop">
-        
-            <form>
-            
-             
-        <div class="card ">
-            <div class="card-body">
-                <h2 class="card-title">{{property.title}}</h2>
-      
-            <label>Address :</label>
-            <p> {{ property.propertyAddress }}</p>
-            <p class="text-muted">{{property.city}},{{ property.country }}</p>
-            <label>Price per night:</label>
-            <p> EGP {{ property.pricePerNight }}</p>
-            <div class="row">
-                <div class="form-group col">
-                <label>propertyType:</label>
-                  <p>{{ property.propertyType }}</p>
-                </div>
-                <div class="form-group col">
-                  <label>Area Type :</label>
-                  <p>{{ property.areaType }}</p>
-                </div>
+    <div *ngFor="let property of properties">
+      <div class="container">
+        <div class="photo-card">
+          <div
+            class="photo-background"
+            style="background-image: url('{{property.imageName}}')"
+          ></div>
+          <div class="photo-details">
+            <h2>{{ property.title }}</h2>
+            <div style="margin-bottom: 25px" class="row">
+              <div class="col">
+                <label>Address :</label>
+                <p>{{ property.propertyAddress }}</p>
               </div>
+              <div class="col">
+                <label>Location :</label>
+                <p>{{ property.city }},{{ property.country }}</p>
+              </div>
+            </div>
+            <div style="margin-bottom: 25px" class="row">
+              <div class="col">
+                <!-- <label>Property Type:</label> -->
+                <p>{{ property.propertyType }}</p>
+              </div>
+              <div class="col">
+                <!-- <label>Area Type :</label> -->
+                <p>{{ property.areaType }}</p>
+              </div>
+            </div>
+            <div style="margin-bottom: 25px">
               <label>Description :</label>
               <p>{{ property.propertyDescription }}</p>
-
-        <div class="">
-          <a
-            (click)="reserve(property.id, property)"
-            class="btn btn-primary btn-block"
-            >Reserve</a
-          >
+            </div>
+            <div style="margin-bottom: 25px">
+              <label>Price Per Night:</label>
+              <p>EGP {{ property.pricePerNight }}</p>
+            </div>
+            <div>
+              <a
+                (click)="reserve(property.id, property)"
+                class="btn btn-success btn-block"
+                >Reserve</a
+              >
+            </div>
+          </div>
         </div>
       </div>
     </div>
-</form>
-
-      </div>
-    
-    
-  </div>
-</section>
+  </section>
