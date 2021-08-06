@@ -29,34 +29,43 @@ export class BedsComponent implements OnInit {
 
   ngOnInit(): void {}
   form = new FormGroup({
-    NoOfKingbeds: new FormControl(''),
-    NoOfSinglebeds: new FormControl(''),
-    NoOfDoublebeds: new FormControl(''),
+    noOfKingbeds: new FormControl(''),
+    noOfSinglebeds: new FormControl(''),
+    noOfDoublebeds: new FormControl(''),
   });
   get NoOfKingbeds() {
-    return this.form.get('NoOfKingbeds');
+    return this.form.get('noOfKingbeds');
   }
   get NoOfSinglebeds() {
-    return this.form.get('NoOfSinglebeds');
+    return this.form.get('noOfSinglebeds');
   }
   get NoOfDoublebeds() {
-    return this.form.get('NoOfDoublebeds');
+    return this.form.get('noOfDoublebeds');
   }
 
   bed() {
-    if (this.form.get('NoOfKingbeds')) {
-      this;
-    }
+    // if (this.form.get('noOfKingbeds')) {
+    //   this;
+    // }
     this.error = '';
 
     this.beds = this.form.value;
-    if (this.form.get('NoOfKingbeds')?.value == '') {
+    if (
+      this.form.get('noOfKingbeds')?.value == '' ||
+      this.form.get('noOfKingbeds')?.pristine
+    ) {
       this.beds.noOfKingbeds = 0;
     }
-    if (this.form.get('NoOfSinglebeds')?.value == '') {
+    if (
+      this.form.get('noOfSinglebeds')?.value == '' ||
+      this.form.get('noOfSinglebeds')?.pristine
+    ) {
       this.beds.noOfSinglebeds = 0;
     }
-    if (this.form.get('NoOfDoublebeds')?.value == '') {
+    if (
+      this.form.get('noOfDoublebeds')?.value == '' ||
+      this.form.get('noOfDoublebeds')?.pristine
+    ) {
       this.beds.noOfDoublebeds = 0;
     }
 
@@ -67,7 +76,7 @@ export class BedsComponent implements OnInit {
       console.log(propertyId);
       console.log(this.beds.PropertyId);
     });
-    //this.beds.PropertyId=4
+
     console.log(this.beds);
     this.service.Bed(this.beds).subscribe(
       (a) => {

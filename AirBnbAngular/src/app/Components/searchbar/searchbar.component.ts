@@ -92,7 +92,36 @@ this.cities = [{
       "name":"Cairo",
       "country":"Egypt",
       "Code":"Eg"
-    },
+    }
+    ,
+    {"name":"Sharm Elsheikh",
+    "country":"Egypt",
+    "Code":"Eg"
+  },
+ { "name":"Hurghada",
+  "country":"Egypt",
+  "Code":"Eg"
+},
+{ "name":"Aswan",
+"country":"Egypt",
+"Code":"Eg"
+},
+{ "name":"Luxor",
+"country":"Egypt",
+"Code":"Eg"
+},
+{ "name":"6 October",
+"country":"Egypt",
+"Code":"Eg"
+},
+{ "name":"Giza",
+"country":"Egypt",
+"Code":"Eg"
+},
+{ "name":"Matruh",
+"country":"Egypt",
+"Code":"Eg"
+},
     {
       "name":"Paris",
       "country":"France",
