@@ -79,7 +79,7 @@ namespace AirBnbWebApi.Controllers
         public async Task<ActionResult<Beds>> PostBeds(Beds beds)
         {
             _context.Beds.Add(beds);
-            _context.properties.Find(beds.PropertyId).Beds = beds;            
+            _context.properties.Find(beds.PropertyId).Beds = beds;
             await _context.SaveChangesAsync();
 
             return CreatedAtAction("GetBeds", new { id = beds.id }, beds);

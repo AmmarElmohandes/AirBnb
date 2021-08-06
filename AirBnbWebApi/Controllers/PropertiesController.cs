@@ -82,11 +82,11 @@ namespace AirBnbWebApi.Controllers
         public async Task<ActionResult<Property>> PostProperty(Property @property)
         {
             var host = _context.hosts.FirstOrDefault(a => a.id == property.HostId);
-            if (PropertyTitleExists(@property.Title))
-            {
-                return BadRequest(error: "This title already exists");
-            }
-            else if (host==null)
+            //if (PropertyTitleExists(@property.Title))
+            //{
+            //    return BadRequest(error: "This title already exists");
+            //}
+             if (host==null)
             {
                 return BadRequest(error: "In valid HostId");
             }
@@ -130,7 +130,7 @@ namespace AirBnbWebApi.Controllers
         {
 
             List<Property> ReturnedProperty = new List<Property>();
-              var AllProperties = await _context.properties.Where(a => a.AvailableStartDate <= userSearch.CheckIn && a.AvailableEndDate >= userSearch.CheckOut &&a.City==userSearch.City &&a.Country==userSearch.Country
+              var AllProperties = await _context.properties.Where(a => a.AvailableStartDate <= userSearch.CheckIn && a.AvailableEndDate >= userSearch.CheckOut &&a.PropertyAddress==userSearch.PropertyAddress &&a.Country==userSearch.Country
               &&(a.Guests.Any(c=>c.NoOfAdultGuests>=userSearch.NoOfAdultGuests&&c.NoOfChildGuests>=userSearch.NoOfChildGuests)
               &&!a.Reservations.Any(a => (a.CheckIn <= userSearch.CheckIn && a.CheckOut >= userSearch.CheckIn) || (a.CheckIn <= userSearch.CheckOut && a.CheckOut >= userSearch.CheckIn))
               )).ToListAsync<Property>();

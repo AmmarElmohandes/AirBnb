@@ -98,6 +98,13 @@ namespace AirBnbWebApi.Controllers
             {
                 return BadRequest(error: "Phone Number already exists");
             }
+            else if (host.BirthDate.ToString() == null)
+            {
+
+                return BadRequest(error: "Date must be given");
+
+            }
+
             else
             {
                 _context.hosts.Add(host);

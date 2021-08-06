@@ -32,7 +32,7 @@ namespace AirBnbWebApi.Models
         [Compare("Password")]
         public string confirmPassword { get; set; }
         [Required]
-        [RegularExpression(@"^(201)[0-9]{9}$")]
+        [RegularExpression(@"^(01)[0-9]{9}$")]
         [Remote("HostPhoneExists", "Hosts", ErrorMessage = "Phone already in use")]
 
         public string PhoneNumber { get; set; }

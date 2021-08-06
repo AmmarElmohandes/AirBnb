@@ -88,6 +88,7 @@ namespace AirBnbWebApi.Controllers
             var dbPath = Path.Combine(folderName, photos.ImageName);
             
             _context.Photos.Add(photos);
+            _context.properties.FirstOrDefault(a => a.id == photos.PropertyId).imageName = photos.ImageName;
             await _context.SaveChangesAsync();
 
             return CreatedAtAction("GetPhotos", new { id = photos.id }, photos);

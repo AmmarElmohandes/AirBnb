@@ -40,7 +40,8 @@ namespace AirBnbWebApi.Migrations
 
                     b.HasKey("id");
 
-                    b.HasIndex("PropertyId");
+                    b.HasIndex("PropertyId")
+                        .IsUnique();
 
                     b.ToTable("Beds");
                 });
@@ -211,6 +212,9 @@ namespace AirBnbWebApi.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("imageName")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("propertyType")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -301,8 +305,8 @@ namespace AirBnbWebApi.Migrations
             modelBuilder.Entity("AirBnbWebApi.Models.Beds", b =>
                 {
                     b.HasOne("AirBnbWebApi.Models.Property", "Propety")
-                        .WithMany("Beds")
-                        .HasForeignKey("PropertyId")
+                        .WithOne("Beds")
+                        .HasForeignKey("AirBnbWebApi.Models.Beds", "PropertyId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
