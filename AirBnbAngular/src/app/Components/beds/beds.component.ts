@@ -11,27 +11,29 @@ import { AppState } from 'src/app/State/app.state';
 @Component({
   selector: 'beds',
   templateUrl: './beds.component.html',
-  styleUrls: ['./beds.component.css']
+  styleUrls: ['./beds.component.css'],
 })
 export class BedsComponent implements OnInit {
-submitted:boolean=true
-beds=new Beds(0,0,0)
-success:string=""
-propertyId:Observable<number>
-  constructor(private router: Router, private service: BedsService,private store:Store<AppState>) {this.propertyId=store.select('propertyId') }
-  error:string=""
-
-  ngOnInit(): void {
-
+  submitted: boolean = true;
+  beds = new Beds(0, 0, 0);
+  success: string = '';
+  propertyId: Observable<number>;
+  constructor(
+    private router: Router,
+    private service: BedsService,
+    private store: Store<AppState>
+  ) {
+    this.propertyId = store.select('propertyId');
   }
-form = new FormGroup({
-  NoOfKingbeds: new FormControl(''),
-  NoOfSinglebeds: new FormControl(''),
-  NoOfDoublebeds: new FormControl(''),
- 
-})
+  error: string = '';
+
+  ngOnInit(): void {}
+  form = new FormGroup({
+    NoOfKingbeds: new FormControl(''),
+    NoOfSinglebeds: new FormControl(''),
+    NoOfDoublebeds: new FormControl(''),
+  });
   get NoOfKingbeds() {
-    
     return this.form.get('NoOfKingbeds');
   }
   get NoOfSinglebeds() {
@@ -40,40 +42,39 @@ form = new FormGroup({
   get NoOfDoublebeds() {
     return this.form.get('NoOfDoublebeds');
   }
-  
-  bed()
-  {
-  if(this.form.get('NoOfKingbeds')){
-    this
-  }
-    this.error=""
-    
-     this.beds = this.form.value;
-     if(this.form.get('NoOfKingbeds')?.value==""){
-      this.beds.NoOfKingbeds=0
-    } 
-    if(this.form.get('NoOfSinglebeds')?.value==""){
-      this.beds.NoOfSinglebeds=0;
+
+  bed() {
+    if (this.form.get('NoOfKingbeds')) {
+      this;
     }
-    if(this.form.get('NoOfDoublebeds')?.value==""){
-this.beds.NoOfDoublebeds=0
+    this.error = '';
+
+    this.beds = this.form.value;
+    if (this.form.get('NoOfKingbeds')?.value == '') {
+      this.beds.noOfKingbeds = 0;
     }
-    
-    
-     let currentPageSub :Subscription;
-                       
-     currentPageSub = this.propertyId.subscribe(
-   (propertyId: number) => {
-       this.beds.PropertyId=propertyId;
-       console.log(propertyId)
-       console.log(this.beds.PropertyId)
-   }
-  );
-     //this.beds.PropertyId=4
+    if (this.form.get('NoOfSinglebeds')?.value == '') {
+      this.beds.noOfSinglebeds = 0;
+    }
+    if (this.form.get('NoOfDoublebeds')?.value == '') {
+      this.beds.noOfDoublebeds = 0;
+    }
+
+    let currentPageSub: Subscription;
+
+    currentPageSub = this.propertyId.subscribe((propertyId: number) => {
+      this.beds.PropertyId = propertyId;
+      console.log(propertyId);
+      console.log(this.beds.PropertyId);
+    });
+    //this.beds.PropertyId=4
     console.log(this.beds);
-    this.service.Bed(this.beds).subscribe(a=>{console.log(a);this.success="successfuly added",this.submitted=false},err=>this.error=err.error)
-      
+    this.service.Bed(this.beds).subscribe(
+      (a) => {
+        console.log(a);
+        (this.success = 'successfuly added'), (this.submitted = false);
+      },
+      (err) => (this.error = err.error)
+    );
+  }
 }
-}
-
-

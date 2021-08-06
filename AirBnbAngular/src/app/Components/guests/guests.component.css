@@ -7,7 +7,7 @@
   display: table;
   max-width: 500px;
   width: 90%;
-  margin: 0 auto;
+  margin: 100px auto;
   box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
 }
 
@@ -68,11 +68,12 @@
   transform: translateY(1px);
 }
 
-.guests form .already {
-  display: block;
-  text-align: center;
-  font-size: 12px;
-  color: #6f7a85;
-  opacity: 0.9;
-  text-decoration: none;
+.guests form .btn-success {
+  border: none;
+  border-radius: 4px;
+  padding: 11px;
+  box-shadow: none;
+  margin-top: 35px;
+  text-shadow: none;
+  outline: none !important;
 }

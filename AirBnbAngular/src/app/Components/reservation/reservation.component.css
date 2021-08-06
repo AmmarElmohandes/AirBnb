@@ -1,0 +1,66 @@
+.reserve {
+  background: #f1f7fc;
+  padding: 80px 0;
+}
+
+.reserve .form-container {
+  display: table;
+  max-width: 900px;
+  width: 90%;
+  margin: 100px auto;
+  box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+}
+
+.reserve form {
+  display: table-cell;
+  width: 400px;
+  background-color: #ffffff;
+  padding: 40px 60px;
+  color: #505e6c;
+}
+
+@media (max-width: 991px) {
+  .reserve form {
+    padding: 40px;
+  }
+}
+
+.reserve form h2 {
+  font-size: 24px;
+  line-height: 1.5;
+  margin-bottom: 30px;
+}
+
+.reserve form .btn-primary {
+  background: #f4476b;
+  border: none;
+  border-radius: 4px;
+  padding: 11px;
+  box-shadow: none;
+  margin-top: 35px;
+  text-shadow: none;
+  outline: none !important;
+}
+
+.reserve form .btn-primary:hover,
+.reserve form .btn-primary:active {
+  background: #eb3b60;
+}
+
+.reserve form .btn-primary:active {
+  transform: translateY(1px);
+}
+
+.reserve form .already {
+  display: block;
+  text-align: center;
+  font-size: 12px;
+  color: #6f7a85;
+  opacity: 0.9;
+  text-decoration: none;
+}
+
+label {
+  font-weight: bold;
+  font-size: large;
+}

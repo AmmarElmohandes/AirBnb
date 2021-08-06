@@ -1,5 +1,6 @@
  <section style="height: 700px; background-image: url('assets/img/header-bg.jpg'); background-size: cover;" class="login-clean">
-            <form [formGroup]='form' (ngSubmit)='login()'>
+    <div class="form-container">       
+    <form [formGroup]='form' (ngSubmit)='login()'>
                 <div class="illustration"><i class="icon ion-ios-navigate"></i></div>
                 <div *ngIf="error" class="alert alert-danger">
                     {{ error }}
@@ -27,4 +28,5 @@
                 </div>
                 <a routerLink="/register" class="forgot" href="#">You don't have an account? Register here.</a>
             </form>
+        </div>
         </section>  

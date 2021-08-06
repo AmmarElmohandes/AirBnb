@@ -1,0 +1,54 @@
+<section
+
+  class="search"
+>
+<div class="form-container">
+   
+
+        <app-searchbar></app-searchbar>
+        <div *ngIf="error" class="alert alert-danger">
+            {{ error }}
+          </div>
+      <div *ngFor="let property of properties" class="loop">
+        
+            <form>
+            
+             
+        <div class="card ">
+            <div class="card-body">
+                <h2 class="card-title">{{property.title}}</h2>
+      
+            <label>Address :</label>
+            <p> {{ property.propertyAddress }}</p>
+            <p class="text-muted">{{property.city}},{{ property.country }}</p>
+            <label>Price per night:</label>
+            <p> EGP {{ property.pricePerNight }}</p>
+            <div class="row">
+                <div class="form-group col">
+                <label>propertyType:</label>
+                  <p>{{ property.propertyType }}</p>
+                </div>
+                <div class="form-group col">
+                  <label>Area Type :</label>
+                  <p>{{ property.areaType }}</p>
+                </div>
+              </div>
+              <label>Description :</label>
+              <p>{{ property.propertyDescription }}</p>
+
+        <div class="">
+          <a
+            (click)="reserve(property.id, property)"
+            class="btn btn-primary btn-block"
+            >Reserve</a
+          >
+        </div>
+      </div>
+    </div>
+</form>
+
+      </div>
+    
+    
+  </div>
+</section>

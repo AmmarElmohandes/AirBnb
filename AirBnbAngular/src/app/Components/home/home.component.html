@@ -1,16 +1,5 @@
-
-<!-- <button
-  *ngIf="authService.isLoggedIn()"
-  routerLink=" "
-  class="btn btn-danger"
-  (click)="authService.logout()"
->
-  Logout
-</button> -->
-<!-- <button routerLink="/register" class="btn btn success">register</button> --> -->
-
 <body>
-  <nav
+  <!-- <nav
     class="navbar navbar-dark navbar-expand-lg fixed-top bg-dark"
     id="mainNav"
   >
@@ -43,29 +32,47 @@
           </li>
           <li class="nav-item">
             <a
-              *ngIf="!authService.isLoggedIn() "
+              *ngIf="!authService.isLoggedIn()"
               routerLink="/register"
               class="nav-link js-scroll-trigger"
               (click)="authService.setFlag(1)"
-              
               href=""
               >Become a Host</a
             >
           </li>
           <li class="nav-item">
-            <a routerLink="/register" *ngIf="!authService.isLoggedIn()" (click)="authService.setFlag(2)" class="nav-link js-scroll-trigger" href=""
+            <a
+              routerLink="/register"
+              *ngIf="!authService.isLoggedIn()"
+              (click)="authService.setFlag(2)"
+              class="nav-link js-scroll-trigger"
+              href=""
               >Register</a
             >
           </li>
           <li class="nav-item">
-            <a routerLink="/" *ngIf="authService.isLoggedIn()" (click)="authService.logout()" class="nav-link js-scroll-trigger" href=""
+            <a
+              routerLink="/property"
+              *ngIf="authService.checkHost()"
+              class="nav-link js-scroll-trigger"
+              href=""
+              >Add Property</a
+            >
+          </li>
+          <li class="nav-item">
+            <a
+              routerLink="/"
+              *ngIf="authService.isLoggedIn()"
+              (click)="authService.logout()"
+              class="nav-link js-scroll-trigger"
+              href=""
               >Log Out</a
             >
           </li>
         </ul>
       </div>
     </div>
-  </nav>
+  </nav> -->
   <header
     class="masthead"
     style="background-image: url('assets/img/header-bg.jpg')"
@@ -79,7 +86,8 @@
       </div>
     </div>
   </header>
-  <section id="search">
+  <app-searchbar></app-searchbar>
+  <!-- <section id="search">
     <div class="container">
       <div class="row">
         <div class="col-lg-12 text-center">
@@ -102,72 +110,106 @@
             <div><span>Find Your Place</span></div>
           </div>
           <div id="basic-div">
-            <form [formGroup]='searchForm' (ngSubmit)='save()'>
-            <div class="row no-gutters">
-              <div class="col-sm-12 col-md-12 col-lg-2">
-                <div class="inputwithicon">
-                  <label for="">Check In:</label>
-                  <input type="date" class="text-input" min={{const}}/>
+            <form [formGroup]="searchForm" (ngSubmit)="save()">
+              <div class="row no-gutters">
+                <div class="col-sm-12 col-md-12 col-lg-2">
+                  <div class="inputwithicon">
+                    <label for="">Check In:</label>
+                    <input
+                      type="date"
+                      class="text-input"
+                      min="{{ const }}"
+                      formControlName="CheckIn"
+                    />
+                  </div>
                 </div>
-              </div>
-              <div class="col-sm-12 col-md-12 col-lg-2">
-                <div class="inputwithicon">
-                  <label for="">Check Out:</label>
-                  <input type="date" class="text-input"  min="{{const}}" />
+                <div class="col-sm-12 col-md-12 col-lg-2">
+                  <div class="inputwithicon">
+                    <label for="">Check Out:</label>
+                    <input
+                      type="date"
+                      class="text-input"
+                      min="{{ const }}"
+                      formControlName="CheckOut"
+                    />
+                  </div>
                 </div>
-              </div>
-              <div class="col-sm-12 col-md-12 col-lg-2">
-                <div class="inputwithicon">
+                <div class="col-sm-12 col-md-12 col-lg-2">
+                  <div class="inputwithicon">
                     <label>Country :</label>
-                 
                     <select class="text-input" formControlName="Country">
-                        <option *ngFor="let country of countries" [ngValue]="country.name">{{country?.name}}</option>
+                      <option
+                        *ngFor="let country of countries"
+                        [ngValue]="country.name"
+                      >
+                        {{ country?.name }}
+                      </option>
                     </select>
-                         <div *ngIf="Country?.touched && Country?.pristine" class="alert alert-danger">
-                            Country is Required.
+                    <div
+                      *ngIf="Country?.touched && Country?.pristine"
+                      class="alert alert-danger"
+                    >
+                      Country is Required.
+                    </div>
+                  </div>
                 </div>
-                </div>
-              </div>
-              <div class="col-sm-12 col-md-12 col-lg-2">
-                <div class="inputwithicon">
+                <div class="col-sm-12 col-md-12 col-lg-2">
+                  <div class="inputwithicon">
                     <label>City :</label>
                     <select class="text-input" formControlName="City">
-                        <option *ngFor="let city of filteredCities"  [ngValue]="city.name">{{city?.name}}</option>
-                          </select>
-                     <div *ngIf="City?.touched && City?.pristine" class="alert alert-danger">
-                        City is Required.
-                     </div>
+                      <option
+                        *ngFor="let city of filteredCities"
+                        [ngValue]="city.name"
+                      >
+                        {{ city?.name }}
+                      </option>
+                    </select>
+                    <div
+                      *ngIf="City?.touched && City?.pristine"
+                      class="alert alert-danger"
+                    >
+                      City is Required.
+                    </div>
+                  </div>
+                </div>
+                <div class="col-sm-12 col-md-12 col-lg-2">
+                  <div class="inputwithicon">
+                    <label for="">Adults:</label>
+                    <input
+                      value="0"
+                      type="number"
+                      class="text-input"
+                      formControlName="NoOfAdultGuests"
+                    />
+                  </div>
+                </div>
+                <div class="col-sm-12 col-md-12 col-lg-2">
+                  <div class="inputwithicon">
+                    <label for="">Children:</label>
+                    <input
+                      value="0"
+                      type="number"
+                      class="text-input"
+                      formControlName="NoOfChildGuests"
+                    />
+                  </div>
                 </div>
               </div>
-              <div class="col-sm-12 col-md-12 col-lg-2">
-                <div class="inputwithicon">
-                  <label for="">Adults:</label>
-                  <input value="0" type="number" class="text-input" />
-                </div>
-              </div>
-              <div class="col-sm-12 col-md-12 col-lg-2">
-                <div class="inputwithicon">
-                  <label for="">Children:</label>
-                  <input value="0" type="number" class="text-input" />
-                </div>
-              </div>
-            </div>
-        </form>
-
+            </form>
           </div>
           <div id="features-div"></div>
           <div class="row" id="buttons-div">
             <div class="col-lg-6 col-xl-6 mx-auto">
               <div id="search-btn" class="searchlink">
                 <i class="fas fa-search" style="margin-left: 5px"></i
-                ><a href="#">Search</a>
+                ><a (click)="save()">Search</a>
               </div>
             </div>
           </div>
         </div>
       </div>
     </div>
-  </section>
+  </section> -->
   <section class="bg-light" id="portfolio">
     <div class="container">
       <div class="row">
@@ -476,4 +518,3 @@
   <script src="assets/js/jquery.easing.min.js"></script>
   <script src="assets/js/agency.js"></script>
 </body>
-

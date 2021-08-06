@@ -28,17 +28,18 @@ sanitizeImageUrl(imageUrl: string): SafeUrl {
         console.log("empty file")
         return 0;
       }
+      this.imgsrc=""
       let fileToUpload = <File>files[0];
       const formData = new FormData();
       formData.append('file', fileToUpload, fileToUpload.name);
-     this.photo.ImageName=fileToUpload.name;
+     this.photo.imageName="http://127.0.0.1:8887/"+fileToUpload.name;
      let currentPageSub :Subscription;
 
      currentPageSub = this.propertyId.subscribe(
    (propertyId: number) => {
-       this.photo.PropertyId=propertyId;
+       this.photo.propertyId=propertyId;
        console.log(propertyId)
-       console.log(this.photo.PropertyId)
+       console.log(this.photo.propertyId)
    }
   );
       return this.httpclient.post("http://localhost:9095/api/photos",this.photo).subscribe((a:any)=>{this.load(formData);this.imgsrc="http://127.0.0.1:8887/"+a.imageName;console.log(a)});
